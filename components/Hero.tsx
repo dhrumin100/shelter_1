@@ -1,0 +1,156 @@
+"use client"
+
+import Image from "next/image"
+import UniversalForm from "./forms/UniversalForm"
+
+interface HeroProps {
+  title: string
+  subtitle?: string
+  backgroundImage: string
+  buttonText?: string
+  buttonLink?: string
+}
+
+export default function Hero({
+  title,
+  subtitle = "Discover premium residential projects with world-class amenities and modern architecture. Your dream home awaits in the heart of Ahmedabad.",
+  backgroundImage,
+  buttonText = "Explore Now",
+  buttonLink = "#properties",
+}: HeroProps) {
+  const handleScrollToProperties = () => {
+    const element = document.getElementById("properties")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  return (
+    <section id="hero" className="relative min-h-[90vh] w-full overflow-hidden">
+      {/* Background Image with Enhanced Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/placeholder.svg?height=900&width=1600"
+          alt="Adani Shantigram projects"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 via-transparent to-transparent" />
+      </div>
+
+      {/* Animated Background Elements with Premium Colors */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-orange-300/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-orange-200/15 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-cream-100/30 rounded-full animate-pulse delay-500"></div>
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10 h-full">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[90vh] py-12">
+            {/* Left Content - Hero Text */}
+            <div className="lg:col-span-7 xl:col-span-6 text-white order-2 lg:order-1">
+              <div className="max-w-3xl">
+                {/* Main Heading with Premium Gradient */}
+                <div className="mb-8">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 animate-fade-in-up">
+                    <span className="block mb-2">Explore Projects In</span>
+                    <span className="block mb-2">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500">
+                        Adani Shantigram
+                      </span>
+                    </span>
+                    <span className="block mb-2">
+                      By{" "}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
+                        Adani Realty
+                      </span>
+                    </span>
+                    <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-cream-100">Ahmedabad</span>
+                  </h1>
+                </div>
+
+                {/* Subtitle with Premium Typography */}
+                <p className="text-lg sm:text-xl lg:text-2xl text-cream-100/90 mb-8 lg:mb-10 leading-relaxed max-w-2xl font-light">
+                  {subtitle}
+                </p>
+
+                {/* Enhanced CTA Section with Premium Gradients */}
+                <div className="flex flex-col sm:flex-row gap-6 mb-12">
+                  <button
+                    onClick={handleScrollToProperties}
+                    className="group bg-gradient-orange-warm hover:shadow-orange-medium text-white font-bold px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 shadow-orange-soft"
+                  >
+                    <span className="flex items-center justify-center">
+                      {buttonText}
+                      <svg
+                        className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+
+                  {/* Trust Indicator with Premium Styling */}
+                  <div className="flex items-center text-cream-100/80">
+                    <div className="flex items-center bg-gradient-to-r from-orange-500/20 to-orange-400/20 backdrop-blur-sm rounded-full px-4 py-2 border border-orange-300/20">
+                      <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-green-500 rounded-full mr-3 animate-pulse"></div>
+                      <span className="text-sm font-medium">RERA Approved Projects</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enhanced Key Features with Premium Colors */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+                  {[
+                    { icon: "🏆", text: "Premium Amenities", gradient: "from-orange-400/20 to-orange-300/20" },
+                    { icon: "🏗️", text: "Modern Architecture", gradient: "from-orange-300/20 to-orange-200/20" },
+                    { icon: "📍", text: "Prime Location", gradient: "from-orange-500/20 to-orange-400/20" },
+                  ].map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`flex items-center bg-gradient-to-r ${feature.gradient} backdrop-blur-sm rounded-lg px-4 py-3 hover:bg-gradient-to-r hover:from-orange-400/30 hover:to-orange-300/30 transition-all duration-300 border border-orange-200/20`}
+                    >
+                      <span className="text-2xl mr-3">{feature.icon}</span>
+                      <span className="font-medium">{feature.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content - Premium Booking Form */}
+            <div className="lg:col-span-5 xl:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end">
+              <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl">
+                <div className="bg-gradient-to-br from-warm-white via-cream-50 to-orange-50 backdrop-blur-lg rounded-3xl shadow-orange-medium p-8 lg:p-10 border border-orange-100/50 hover:shadow-orange-soft transition-shadow duration-500">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent mb-2">
+                      Book Your Site Visit
+                    </h3>
+                    <p className="text-orange-600/80">Schedule a personalized tour today</p>
+                  </div>
+                  <UniversalForm type="booking" title="" description="" className="space-y-5" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Gradient with Premium Colors */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream-50/30 to-transparent pointer-events-none"></div>
+    </section>
+  )
+}

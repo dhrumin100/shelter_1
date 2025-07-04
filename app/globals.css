@@ -1,0 +1,306 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Consistent Orange, White, Black & Gray Theme */
+@layer utilities {
+  /* Orange Shades - Primary Color */
+  .bg-orange-50 {
+    background-color: #fff8f1;
+  }
+  .bg-orange-75 {
+    background-color: #fef3e7;
+  }
+  .bg-orange-100 {
+    background-color: #fed7aa;
+  }
+  .bg-orange-200 {
+    background-color: #fdba74;
+  }
+  .bg-orange-300 {
+    background-color: #fb923c;
+  }
+  .bg-orange-400 {
+    background-color: #f97316;
+  }
+  .bg-orange-500 {
+    background-color: #ea580c;
+  }
+  .bg-orange-600 {
+    background-color: #dc2626;
+  }
+  .bg-orange-700 {
+    background-color: #c2410c;
+  }
+  .bg-orange-800 {
+    background-color: #9a3412;
+  }
+  .bg-orange-900 {
+    background-color: #7c2d12;
+  }
+
+  /* White & Light Gray Variations - Secondary Colors */
+  .bg-white-50 {
+    background-color: #ffffff;
+  }
+  .bg-white-100 {
+    background-color: #fefefe;
+  }
+  .bg-white-200 {
+    background-color: #fdfdfd;
+  }
+  .bg-gray-25 {
+    background-color: #fafafa;
+  }
+  .bg-gray-50 {
+    background-color: #f9f9f9;
+  }
+  .bg-gray-75 {
+    background-color: #f7f7f7;
+  }
+  .bg-gray-100 {
+    background-color: #f5f5f5;
+  }
+  .bg-gray-150 {
+    background-color: #f0f0f0;
+  }
+  .bg-gray-200 {
+    background-color: #e5e5e5;
+  }
+  .bg-gray-300 {
+    background-color: #d4d4d4;
+  }
+
+  /* Black Variations - Accent Color */
+  .bg-black-50 {
+    background-color: #fafafa;
+  }
+  .bg-black-100 {
+    background-color: #f5f5f5;
+  }
+  .bg-black-200 {
+    background-color: #e5e5e5;
+  }
+  .bg-black-300 {
+    background-color: #d4d4d4;
+  }
+  .bg-black-400 {
+    background-color: #a3a3a3;
+  }
+  .bg-black-500 {
+    background-color: #737373;
+  }
+  .bg-black-600 {
+    background-color: #525252;
+  }
+  .bg-black-700 {
+    background-color: #404040;
+  }
+  .bg-black-800 {
+    background-color: #262626;
+  }
+  .bg-black-900 {
+    background-color: #171717;
+  }
+
+  /* Text Colors */
+  .text-orange-50 {
+    color: #fff8f1;
+  }
+  .text-orange-100 {
+    color: #fed7aa;
+  }
+  .text-orange-200 {
+    color: #fdba74;
+  }
+  .text-orange-300 {
+    color: #fb923c;
+  }
+  .text-orange-400 {
+    color: #f97316;
+  }
+  .text-orange-500 {
+    color: #ea580c;
+  }
+  .text-orange-600 {
+    color: #dc2626;
+  }
+  .text-orange-700 {
+    color: #c2410c;
+  }
+  .text-orange-800 {
+    color: #9a3412;
+  }
+  .text-orange-900 {
+    color: #7c2d12;
+  }
+
+  .text-gray-50 {
+    color: #f9f9f9;
+  }
+  .text-gray-100 {
+    color: #f5f5f5;
+  }
+  .text-gray-200 {
+    color: #e5e5e5;
+  }
+  .text-gray-300 {
+    color: #d4d4d4;
+  }
+  .text-gray-400 {
+    color: #a3a3a3;
+  }
+  .text-gray-500 {
+    color: #737373;
+  }
+  .text-gray-600 {
+    color: #525252;
+  }
+  .text-gray-700 {
+    color: #404040;
+  }
+  .text-gray-800 {
+    color: #262626;
+  }
+  .text-gray-900 {
+    color: #171717;
+  }
+
+  /* Border Colors */
+  .border-orange-50 {
+    border-color: #fff8f1;
+  }
+  .border-orange-100 {
+    border-color: #fed7aa;
+  }
+  .border-orange-200 {
+    border-color: #fdba74;
+  }
+  .border-orange-300 {
+    border-color: #fb923c;
+  }
+  .border-gray-50 {
+    border-color: #f9f9f9;
+  }
+  .border-gray-100 {
+    border-color: #f5f5f5;
+  }
+  .border-gray-200 {
+    border-color: #e5e5e5;
+  }
+  .border-gray-300 {
+    border-color: #d4d4d4;
+  }
+
+  /* Consistent Gradients - Orange, White, Gray Only */
+  .bg-gradient-orange-light {
+    background: linear-gradient(135deg, #fff8f1 0%, #fef3e7 50%, #fed7aa 100%);
+  }
+
+  .bg-gradient-orange-warm {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+  }
+
+  .bg-gradient-orange-dark {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 50%, #9a3412 100%);
+  }
+
+  .bg-gradient-white-soft {
+    background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fafafa 100%);
+  }
+
+  .bg-gradient-gray-light {
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #f0f0f0 100%);
+  }
+
+  .bg-gradient-premium {
+    background: linear-gradient(135deg, #fff8f1 0%, #fef3e7 25%, #fed7aa 50%, #fdba74 75%, #f97316 100%);
+  }
+
+  /* Consistent Shadow Variations */
+  .shadow-orange-soft {
+    box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.1), 0 2px 4px -1px rgba(249, 115, 22, 0.06);
+  }
+
+  .shadow-orange-medium {
+    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.1), 0 4px 6px -2px rgba(249, 115, 22, 0.05);
+  }
+
+  .shadow-gray-soft {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-gray-medium {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+  background-size: 200px 100%;
+}
