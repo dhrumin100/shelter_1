@@ -3,6 +3,10 @@ import { google } from 'googleapis';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
+<<<<<<< HEAD
+=======
+// THIS LINE ONLY:
+>>>>>>> 5ee2a3e0b550f69381f9c148d10b43eea052cdbc
 const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!);
 
 const auth = new google.auth.GoogleAuth({
