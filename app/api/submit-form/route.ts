@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
-import path from 'path';
-import fs from 'fs';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!);
-const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
 const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: SCOPES,
