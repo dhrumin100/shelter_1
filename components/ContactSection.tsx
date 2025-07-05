@@ -17,25 +17,38 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const phoneNumber = "9714512452"
-    const message = `Contact Request:
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Message: ${formData.message}`
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, "_blank")
-
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      message: "",
-    })
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const payload = {
+      formType: "contact",
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      propertyName: "", // No property for general contact
+    };
+    try {
+      const res = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Failed to submit');
+      // Only after successful API call, open WhatsApp
+      const phoneNumber = "9714512452";
+      const message = `Contact Request:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nMessage: ${payload.message}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (err) {
+      alert('Submission failed. Please try again.');
+      console.error(err);
+    }
   }
 
   return (

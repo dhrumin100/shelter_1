@@ -53,6 +53,7 @@ export interface FormData {
   budget?: string
   visitDate?: string
   visitTime?: string
+  propertyCategory?: string // Added for booking form
 }
 
 export interface FormErrors {
@@ -64,6 +65,7 @@ export interface FormErrors {
   budget?: string
   visitDate?: string
   visitTime?: string
+  propertyCategory?: string // Added for booking form
 }
 
 export interface FormState {

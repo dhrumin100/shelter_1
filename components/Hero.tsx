@@ -14,7 +14,7 @@ interface HeroProps {
 export default function Hero({
   title,
   subtitle = "Discover premium residential projects with world-class amenities and modern architecture. Your dream home awaits in the heart of Ahmedabad.",
-  backgroundImage,
+  backgroundImage = "/images/main.jpg",
   buttonText = "Explore Now",
   buttonLink = "#properties",
 }: HeroProps) {
@@ -26,19 +26,28 @@ export default function Hero({
   }
 
   return (
-    <section id="hero" className="relative min-h-[90vh] w-full overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-[90vh] w-full overflow-hidden"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       {/* Background Image with Enhanced Overlay */}
       <div className="absolute inset-0">
         <Image
-          src="/placeholder.svg?height=900&width=1600"
-          alt="Adani Shantigram projects"
+          src={backgroundImage}
+          alt="Hero background"
           fill
           priority
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-orange-900/20 via-transparent to-transparent" />
       </div>
 
       {/* Animated Background Elements with Premium Colors */}
@@ -58,19 +67,7 @@ export default function Hero({
                 {/* Main Heading with Premium Gradient */}
                 <div className="mb-8">
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 animate-fade-in-up">
-                    <span className="block mb-2">Explore Projects In</span>
-                    <span className="block mb-2">
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500">
-                        Adani Shantigram
-                      </span>
-                    </span>
-                    <span className="block mb-2">
-                      By{" "}
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
-                        Adani Realty
-                      </span>
-                    </span>
-                    <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-cream-100">Ahmedabad</span>
+                    {title}
                   </h1>
                 </div>
 
@@ -134,7 +131,7 @@ export default function Hero({
             {/* Right Content - Premium Booking Form */}
             <div className="lg:col-span-5 xl:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end">
               <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl">
-                <div className="bg-gradient-to-br from-warm-white via-cream-50 to-orange-50 backdrop-blur-lg rounded-3xl shadow-orange-medium p-8 lg:p-10 border border-orange-100/50 hover:shadow-orange-soft transition-shadow duration-500">
+                <div className="bg-gradient-to-br from-warm-white via-cream-50 to-orange-50 backdrop-blur-lg rounded-3xl shadow-orange-medium p-8 lg:p-10 border border-orange-100/50 hover:shadow-orange-soft transition-shadow duration-500 mt-8">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent mb-2">
                       Book Your Site Visit

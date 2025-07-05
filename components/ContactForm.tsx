@@ -6,9 +6,10 @@ import { useState } from "react"
 
 interface ContactFormProps {
   propertyName?: string
+  property?: any
 }
 
-export default function ContactForm({ propertyName }: ContactFormProps) {
+export default function ContactForm({ propertyName, property = {} }: ContactFormProps) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,33 +17,54 @@ export default function ContactForm({ propertyName }: ContactFormProps) {
     message: propertyName ? `I'm interested in ${propertyName}` : "",
   })
 
+  const [submitted, setSubmitted] = useState(false)
+  const [submittedData, setSubmittedData] = useState<any>(null)
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const payload = {
+      formType: "contact",
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      propertyCategory: property.category || "",
+      project: propertyName || "",
+      budget: "",
+      message: formData.message,
+      propertyName: property.name || propertyName || "",
+    };
+    try {
+      const res = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Failed to submit');
+      // Only after successful API call, open WhatsApp
+      const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
+      const message = `Contact:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nProperty: ${payload.propertyName}\nCategory: ${payload.propertyCategory}\nMessage: ${payload.message}`;
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+      setSubmitted(true);
+    } catch (err) {
+      alert('Submission failed. Please try again.');
+      console.error(err);
+    }
+  }
 
-    // Send to WhatsApp with updated number
-    const phoneNumber = "9714512452"
-    const message = `Contact Request:
-Property: ${propertyName || "Not specified"}
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Message: ${formData.message}`
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, "_blank")
-
-    // Reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      message: propertyName ? `I'm interested in ${propertyName}` : "",
-    })
+  if (submitted) {
+    return (
+      <div className="bg-green-50 border border-green-200 rounded-xl p-6 max-w-md mx-auto text-center">
+        <h3 className="text-xl font-bold text-green-800 mb-2">Thank you for your submission!</h3>
+        <button onClick={() => setSubmitted(false)} className="text-green-600 hover:text-green-800 font-medium text-sm underline mt-4">
+          Submit Another
+        </button>
+      </div>
+    )
   }
 
   return (

@@ -145,14 +145,10 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
               <h3 className="text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent group-hover:from-orange-600 group-hover:to-orange-700 transition-all duration-300">
                 {property.name}
               </h3>
-              <div className="flex items-center text-xs text-gray-500">
-                <MapPin className="h-3 w-3 mr-1" />
-                <span className="truncate">{property.location}</span>
-              </div>
             </div>
 
             <p className="text-sm text-gray-600 font-medium">
-              {getPropertyTypeText()} {!isCommercial && `in ${property.location}`}
+              {getPropertyTypeText()}
             </p>
 
             {/* Developer Information for Commercial Properties */}

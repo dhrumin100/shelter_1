@@ -36,12 +36,25 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
   const handleSubmit = async (data: any) => {
     const enquiryData = {
       ...data,
-      property: property.name,
-      propertyType: `${property.bhk} BHK`,
-      location: property.location,
+      propertyName: property.name,
+      propertyCategory: property.category,
+      formType: 'enquiry',
+    };
+    try {
+      const res = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(enquiryData),
+      });
+      if (!res.ok) throw new Error('Failed to submit');
+      // Only after successful API call, open WhatsApp
+      const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
+      const message = `Enquiry:\nName: ${enquiryData.fullName}\nEmail: ${enquiryData.email}\nPhone: ${enquiryData.phone}\nProperty: ${enquiryData.propertyName}\nCategory: ${enquiryData.propertyCategory}\nMessage: ${enquiryData.message}`;
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    } catch (err) {
+      alert('Submission failed. Please try again.');
+      console.error(err);
     }
-
-    sendFormData(enquiryData, "Property Enquiry")
   }
 
   const {
@@ -84,9 +97,8 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
       {/* Modal Container */}
       <div className="flex min-h-full items-center justify-center p-4">
         <div
-          className={`relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl transform transition-all duration-300 ${
-            isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-          }`}
+          className={`relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl transform transition-all duration-300 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            }`}
         >
           {/* Close Button */}
           <button
@@ -207,9 +219,8 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
                         id="fullName"
                         value={data.fullName}
                         onChange={(e) => updateField("fullName", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
-                          errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                          }`}
                         placeholder="Full Name"
                       />
                       {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
@@ -226,9 +237,8 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
                         id="email"
                         value={data.email}
                         onChange={(e) => updateField("email", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
-                          errors.email ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.email ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                          }`}
                         placeholder="Email"
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -245,9 +255,8 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
                         id="phone"
                         value={data.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
-                          errors.phone ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.phone ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                          }`}
                         placeholder="Phone"
                       />
                       {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}

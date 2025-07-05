@@ -7,13 +7,13 @@ export default function VirtualTours() {
     {
       id: 1,
       title: "Interior 3D Tour",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/toor.jpg",
       description: "Explore interior designs in an immersive experience",
     },
     {
       id: 2,
       title: "Virtual Sample House",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/smaple.jpg",
       description: "Take a virtual tour of our sample houses",
     },
   ]

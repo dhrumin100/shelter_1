@@ -8,7 +8,7 @@ interface UseWhatsAppOptions {
   onError?: (error: Error) => void
 }
 
-export const useWhatsApp = ({ phoneNumber = "9714512452", onError }: UseWhatsAppOptions = {}) => {
+export const useWhatsApp = ({ phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452", onError }: UseWhatsAppOptions = {}) => {
   const sendMessage = useCallback(
     (message: string) => {
       try {
@@ -34,9 +34,9 @@ export const useWhatsApp = ({ phoneNumber = "9714512452", onError }: UseWhatsApp
     (formData: any, formType: string) => {
       const message = `${formType}:
 ${Object.entries(formData)
-  .filter(([_, value]) => value)
-  .map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`)
-  .join("\n")}`
+          .filter(([_, value]) => value)
+          .map(([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`)
+          .join("\n")}`
 
       sendMessage(message)
     },
