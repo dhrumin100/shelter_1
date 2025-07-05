@@ -3,24 +3,23 @@ import { google } from 'googleapis';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
-
-
-const SHEET_ID = process.env.GOOGLE_SHEET_ID;
-const RAW_CREDENTIALS = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON;
-
-if (!SHEET_ID || !RAW_CREDENTIALS) {
-    throw new Error('Missing required env vars: GOOGLE_SHEET_ID or GOOGLE_SERVICE_ACCOUNT_KEY_JSON');
-}
-
-// ✅ FIX: Replace escaped newlines before parsing
-const credentials = JSON.parse(RAW_CREDENTIALS.replace(/\\n/g, '\n'));
-const auth = new google.auth.GoogleAuth({
-    credentials,
-    scopes: SCOPES,
-});
-
 export async function POST(req: NextRequest) {
     try {
+        const SHEET_ID = process.env.GOOGLE_SHEET_ID;
+        const RAW_CREDENTIALS = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON;
+
+        if (!SHEET_ID || !RAW_CREDENTIALS) {
+            throw new Error('Missing required env vars: GOOGLE_SHEET_ID or GOOGLE_SERVICE_ACCOUNT_KEY_JSON');
+        }
+
+        // Replace escaped newlines before parsing
+        const credentials = JSON.parse(RAW_CREDENTIALS.replace(/\\n/g, '\n'));
+
+        const auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: SCOPES,
+        });
+
         const body = await req.json();
 
         const {
@@ -79,6 +78,7 @@ export async function POST(req: NextRequest) {
         });
 
         return NextResponse.json({ success: true });
+
     } catch (error) {
         console.error('Error submitting form:', error);
         return NextResponse.json({ error: 'Failed to submit form' }, { status: 500 });
