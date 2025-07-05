@@ -1,8 +1,8 @@
 {
-    "version": 2,
-    {
-  "builds": [
-    { "src": "tset1/next.config.js", "use": "@vercel/next" }
-  ]
-}
+    "builds": [
+        {
+            "src": "tset1/package.json",
+            "use": "@vercel/next"
+        }
+    ]
 }
