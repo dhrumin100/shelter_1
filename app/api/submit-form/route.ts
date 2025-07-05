@@ -2,10 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-<<<<<<< HEAD
-const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!);
-=======
+
+
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID;
 const RAW_CREDENTIALS = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON;
@@ -16,8 +14,6 @@ if (!SHEET_ID || !RAW_CREDENTIALS) {
 
 // ✅ FIX: Replace escaped newlines before parsing
 const credentials = JSON.parse(RAW_CREDENTIALS.replace(/\\n/g, '\n'));
->>>>>>> 2ead16b138fd2a43b4d628c9c5f95cc509b91f61
-
 const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: SCOPES,
