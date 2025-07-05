@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
-import path from 'path';
-import fs from 'fs';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
-const CREDENTIALS_PATH = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!;
-const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
+const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!);
+
 const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: SCOPES,
@@ -19,7 +17,6 @@ export async function POST(req: NextRequest) {
         const sheets = google.sheets({ version: 'v4', auth });
         // Format timestamp as 'DD-MM-YYYY hh:mm:ss AM/PM (IST)'
         const now = new Date();
-        // Convert to IST
         const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
         const istOffset = 5.5 * 60 * 60000;
         const istNow = new Date(utc + istOffset);

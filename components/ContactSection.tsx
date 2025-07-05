@@ -52,64 +52,64 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="bg-gradient-orange-light py-16">
+    <section className="bg-gradient-orange-light py-8 md:py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-orange-800 to-orange-900 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center bg-gradient-to-r from-orange-800 to-orange-900 bg-clip-text text-transparent">
           Get In Touch
         </h2>
 
         <div className="max-w-6xl mx-auto">
-          <p className="text-center text-gray-700 mb-12 text-lg">
+          <p className="text-center text-gray-700 mb-8 md:mb-12 text-base md:text-lg px-4">
             Want to know more about Adani Shantigram? Contact our expert team for detailed information about the
             project.
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex items-start p-6 bg-gradient-white-soft rounded-2xl shadow-gray-soft border border-gray-200">
-                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-3 mr-4">
-                  <Phone className="text-orange-700 h-6 w-6" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div className="space-y-6 md:space-y-8">
+              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
+                  <Phone className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg">Phone</h3>
-                  <p className="text-gray-600">9714512452</p>
+                  <h3 className="font-bold text-gray-800 text-base md:text-lg">Phone</h3>
+                  <p className="text-gray-600 text-sm md:text-base">9714512452</p>
                 </div>
               </div>
 
-              <div className="flex items-start p-6 bg-gradient-white-soft rounded-2xl shadow-gray-soft border border-gray-200">
-                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-3 mr-4">
-                  <Mail className="text-orange-700 h-6 w-6" />
+              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
+                  <Mail className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg">Email</h3>
-                  <p className="text-gray-600">info@shelter4u.in</p>
+                  <h3 className="font-bold text-gray-800 text-base md:text-lg">Email</h3>
+                  <p className="text-gray-600 text-sm md:text-base">info@shelter4u.in</p>
                 </div>
               </div>
 
-              <div className="flex items-start p-6 bg-gradient-white-soft rounded-2xl shadow-gray-soft border border-gray-200">
-                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-3 mr-4">
-                  <MapPin className="text-orange-700 h-6 w-6" />
+              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
+                  <MapPin className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg">Location</h3>
-                  <p className="text-gray-600">B 1102, GANESH GLORY, 11, Jagatpur Rd, Gota, Ahmedabad</p>
+                  <h3 className="font-bold text-gray-800 text-base md:text-lg">Location</h3>
+                  <p className="text-gray-600 text-sm md:text-base">B 1102, GANESH GLORY, 11, Jagatpur Rd, Gota, Ahmedabad</p>
                 </div>
               </div>
 
-              <div className="flex items-start p-6 bg-gradient-white-soft rounded-2xl shadow-gray-soft border border-gray-200">
-                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-3 mr-4">
-                  <Clock className="text-orange-700 h-6 w-6" />
+              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+                <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
+                  <Clock className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg">Working Hours</h3>
-                  <p className="text-gray-600">Mon - Sat: 10:00 AM - 06:00 PM</p>
+                  <h3 className="font-bold text-gray-800 text-base md:text-lg">Working Hours</h3>
+                  <p className="text-gray-600 text-sm md:text-base">Mon - Sat: 10:00 AM - 06:00 PM</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-white-soft p-8 rounded-2xl shadow-gray-soft border border-gray-200">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gradient-white-soft p-6 md:p-8 rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
                       Full Name
@@ -121,7 +121,7 @@ export default function ContactSection() {
                       value={formData.fullName}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white"
+                      className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white text-sm md:text-base"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -137,7 +137,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white"
+                      className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white text-sm md:text-base"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -154,7 +154,7 @@ export default function ContactSection() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white"
+                    className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white text-sm md:text-base"
                     placeholder="Enter your phone number"
                   />
                 </div>
@@ -169,14 +169,14 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white resize-none"
+                    className="w-full px-3 md:px-4 py-2.5 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white resize-none text-sm md:text-base"
                     placeholder="Tell us about your requirements..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-orange-warm hover:bg-gradient-orange-dark text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-orange-soft hover:shadow-orange-medium transform hover:scale-[1.02]"
+                  className="w-full bg-gradient-orange-warm hover:bg-gradient-orange-dark text-white font-bold py-3 md:py-4 rounded-xl transition-all duration-300 shadow-orange-soft hover:shadow-orange-medium transform hover:scale-[1.02] text-sm md:text-base"
                 >
                   Send Message
                 </button>

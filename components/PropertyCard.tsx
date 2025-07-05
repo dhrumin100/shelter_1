@@ -82,9 +82,9 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
   return (
     <>
-      <article className="group bg-gradient-white-soft rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-soft transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+      <article className="group bg-gradient-white-soft rounded-xl md:rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-soft transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 border border-gray-100">
         {/* Property Image with Consistent Theme */}
-        <div className="relative h-56 w-full bg-gradient-gray-light overflow-hidden">
+        <div className="relative h-48 sm:h-56 w-full bg-gradient-gray-light overflow-hidden">
           {imageLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
               <LoadingSpinner size="lg" />
@@ -98,38 +98,38 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             className="object-cover group-hover:scale-110 transition-transform duration-700"
             onLoad={handleImageLoad}
             onError={handleImageError}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
           />
 
           {/* Consistent Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black-900/50 via-black-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Category Badge - Orange Theme Only */}
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-lg bg-gradient-orange-warm">
+          <div className="absolute top-3 md:top-4 left-3 md:left-4">
+            <span className="px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-semibold text-white shadow-lg bg-gradient-orange-warm">
               {isCommercial ? "🏢 Commercial" : "🏠 Residential"}
             </span>
           </div>
 
           {/* Property Type Badge */}
-          <div className="absolute top-4 right-4">
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-white-soft text-gray-800 shadow-lg border border-gray-200">
+          <div className="absolute top-3 md:top-4 right-3 md:right-4">
+            <span className="px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-semibold bg-gradient-white-soft text-gray-800 shadow-lg border border-gray-200">
               {property.type}
             </span>
           </div>
 
           {/* Hover Action Buttons */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 px-4">
               <button
                 onClick={handleKnowMoreClick}
-                className="bg-gradient-white-soft hover:bg-gray-50 text-gray-800 px-5 py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-gray-soft border border-gray-200"
+                className="bg-gradient-white-soft hover:bg-gray-50 text-gray-800 px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-gray-soft border border-gray-200"
               >
                 View Details
               </button>
               <button
                 onClick={handleEnquireClick}
-                className="bg-gradient-orange-warm hover:shadow-orange-medium text-white px-5 py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-orange-soft"
+                className="bg-gradient-orange-warm hover:shadow-orange-medium text-white px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-orange-soft"
               >
                 Enquire Now
               </button>
@@ -138,11 +138,11 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
         </div>
 
         {/* Card Content with Consistent Theme */}
-        <div className="p-6">
+        <div className="p-4 md:p-6">
           {/* Header Section */}
-          <div className="mb-5">
-            <div className="flex items-start justify-between mb-3">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent group-hover:from-orange-600 group-hover:to-orange-700 transition-all duration-300">
+          <div className="mb-4 md:mb-5">
+            <div className="flex items-start justify-between mb-2 md:mb-3">
+              <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent group-hover:from-orange-600 group-hover:to-orange-700 transition-all duration-300">
                 {property.name}
               </h3>
             </div>
@@ -161,8 +161,8 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
           </div>
 
           {/* Company Logo with Consistent Frame */}
-          <div className="flex justify-center mb-5">
-            <div className="relative h-8 w-20 bg-gradient-gray-light rounded-lg p-1.5 border border-gray-200 shadow-sm">
+          <div className="flex justify-center mb-4 md:mb-5">
+            <div className="relative h-6 md:h-8 w-16 md:w-20 bg-gradient-gray-light rounded-lg p-1 md:p-1.5 border border-gray-200 shadow-sm">
               <Image
                 src={property.companyLogo || "/placeholder.svg?height=32&width=80"}
                 alt="Developer Logo"
@@ -175,11 +175,11 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
           {/* Enhanced Pricing Section for Commercial Properties */}
           {isCommercial ? (
-            <div className="mb-6 space-y-3">
+            <div className="mb-4 md:mb-6 space-y-3">
               {/* Main Price Display */}
-              <div className="text-center p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
+              <div className="text-center p-3 md:p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
                 <p className="text-xs font-semibold text-orange-700 mb-1">Price Range</p>
-                <p className="text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
+                <p className="text-lg md:text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
                   {getPriceDisplay()}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">{property.priceDescription}</p>
@@ -188,9 +188,9 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
               {/* Detailed Pricing Breakdown */}
               <div className="grid grid-cols-1 gap-2">
                 {property.officeSize && property.officePrice && (
-                  <div className="flex items-center justify-between p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+                  <div className="flex items-center justify-between p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
                     <div className="flex items-center">
-                      <div className="w-6 h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
+                      <div className="w-5 h-5 md:w-6 md:h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
                         <Briefcase className="h-3 w-3 text-orange-700" />
                       </div>
                       <div>
@@ -205,9 +205,9 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
                 )}
 
                 {property.showroomSize && property.showroomPrice && (
-                  <div className="flex items-center justify-between p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+                  <div className="flex items-center justify-between p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
                     <div className="flex items-center">
-                      <div className="w-6 h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
+                      <div className="w-5 h-5 md:w-6 md:h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
                         <Building2 className="h-3 w-3 text-orange-700" />
                       </div>
                       <div>
@@ -224,9 +224,9 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             </div>
           ) : (
             /* Regular Pricing Section for Residential */
-            <div className="text-center mb-6 p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
+            <div className="text-center mb-4 md:mb-6 p-3 md:p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
               <p className="text-xs font-semibold text-orange-700 mb-1">{`${getPropertyTypeText()} Starts From`}</p>
-              <p className="text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
+              <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
                 {getPriceDisplay()} {property.priceUnit}
               </p>
               <p className="text-xs text-gray-500 mt-1">{property.priceDescription}</p>
@@ -234,24 +234,24 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
           )}
 
           {/* Property Details Grid - Enhanced for Commercial */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            <div className="flex items-center p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                <Square className="h-4 w-4 text-orange-700" />
+          <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
+            <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+              <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
+                <Square className="h-3 w-3 md:h-4 md:w-4 text-orange-700" />
               </div>
               <div>
                 <p className="text-xs text-gray-500">Size</p>
-                <p className="text-sm font-semibold text-gray-800">{formatSizeDisplay()}</p>
+                <p className="text-xs md:text-sm font-semibold text-gray-800">{formatSizeDisplay()}</p>
               </div>
             </div>
 
-            <div className="flex items-center p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                <Calendar className="h-4 w-4 text-orange-700" />
+            <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+              <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
+                <Calendar className="h-3 w-3 md:h-4 md:w-4 text-orange-700" />
               </div>
               <div>
                 <p className="text-xs text-gray-500">Possession</p>
-                <p className="text-sm font-semibold text-gray-800">{property.possession || "TBA"}</p>
+                <p className="text-xs md:text-sm font-semibold text-gray-800">{property.possession || "TBA"}</p>
               </div>
             </div>
 
@@ -259,25 +259,25 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             {isCommercial && (
               <>
                 {property.parkingSpaces !== undefined && (
-                  <div className="flex items-center p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="w-8 h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                      <Car className="h-4 w-4 text-orange-800" />
+                  <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+                    <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
+                      <Car className="h-3 w-3 md:h-4 md:w-4 text-orange-800" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Parking</p>
-                      <p className="text-sm font-semibold text-gray-800">{property.parkingSpaces} Spaces</p>
+                      <p className="text-xs md:text-sm font-semibold text-gray-800">{property.parkingSpaces} Spaces</p>
                     </div>
                   </div>
                 )}
 
                 {property.floorDetails && (
-                  <div className="flex items-center p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="w-8 h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-3 shadow-sm">
-                      <Building2 className="h-4 w-4 text-orange-800" />
+                  <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
+                    <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
+                      <Building2 className="h-3 w-3 md:h-4 md:w-4 text-orange-800" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Floor</p>
-                      <p className="text-sm font-semibold text-gray-800">{property.floorDetails}</p>
+                      <p className="text-xs md:text-sm font-semibold text-gray-800">{property.floorDetails}</p>
                     </div>
                   </div>
                 )}
@@ -287,19 +287,19 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
           {/* Commercial Suitable For Tags - Orange Theme */}
           {isCommercial && property.suitableFor && (
-            <div className="mb-5">
+            <div className="mb-4 md:mb-5">
               <p className="text-xs text-gray-500 mb-2">Suitable For:</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1 md:gap-2">
                 {property.suitableFor.slice(0, 3).map((item, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 text-xs rounded-full font-medium border border-orange-200"
+                    className="px-2 md:px-3 py-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 text-xs rounded-full font-medium border border-orange-200"
                   >
                     {item}
                   </span>
                 ))}
                 {property.suitableFor.length > 3 && (
-                  <span className="px-3 py-1 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 text-xs rounded-full font-medium border border-gray-200">
+                  <span className="px-2 md:px-3 py-1 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 text-xs rounded-full font-medium border border-gray-200">
                     +{property.suitableFor.length - 3} more
                   </span>
                 )}
@@ -308,17 +308,17 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
           )}
 
           {/* Action Buttons - Consistent Orange Theme */}
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             <button
               onClick={handleKnowMoreClick}
-              className="w-full bg-gradient-orange-warm hover:shadow-orange-medium text-white font-semibold py-3 rounded-xl transition-all duration-300 text-sm shadow-orange-soft transform hover:scale-[1.02]"
+              className="w-full bg-gradient-orange-warm hover:shadow-orange-medium text-white font-semibold py-2.5 md:py-3 rounded-xl transition-all duration-300 text-sm shadow-orange-soft transform hover:scale-[1.02]"
             >
               Know More
             </button>
 
             <button
               onClick={handleEnquireClick}
-              className="w-full border-2 border-orange-300 bg-gradient-orange-light text-orange-700 hover:bg-gradient-orange-warm hover:text-white hover:border-orange-600 font-semibold py-3 rounded-xl transition-all duration-300 text-sm transform hover:scale-[1.02]"
+              className="w-full border-2 border-orange-300 bg-gradient-orange-light text-orange-700 hover:bg-gradient-orange-warm hover:text-white hover:border-orange-600 font-semibold py-2.5 md:py-3 rounded-xl transition-all duration-300 text-sm transform hover:scale-[1.02]"
             >
               Enquire Now
             </button>
@@ -326,7 +326,7 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
           {/* RERA Information */}
           {property.rera && (
-            <div className="mt-5 pt-4 border-t border-gray-200">
+            <div className="mt-4 md:mt-5 pt-3 md:pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500 leading-relaxed break-words" title={property.rera}>
                 <span className="font-semibold">RERA:</span> {property.rera}
               </p>

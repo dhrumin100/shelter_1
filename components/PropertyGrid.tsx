@@ -8,10 +8,10 @@ interface PropertyGridProps {
 export default function PropertyGrid({ properties }: PropertyGridProps) {
   if (properties.length === 0) {
     return (
-      <div className="text-center py-16">
-        <div className="max-w-md mx-auto">
-          <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
-            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="text-center py-8 md:py-16">
+        <div className="max-w-md mx-auto px-4">
+          <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+            <svg className="w-8 h-8 md:w-12 md:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -20,8 +20,8 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
               />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Properties Found</h3>
-          <p className="text-gray-600">
+          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">No Properties Found</h3>
+          <p className="text-gray-600 text-sm md:text-base">
             We're currently updating our property listings. Please check back soon or contact us for more information.
           </p>
         </div>
@@ -29,9 +29,9 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
     )
   }
 
-  // Enhanced grid with better spacing - max 3 cards per row with generous gaps
+  // Enhanced responsive grid with better spacing for all screen sizes
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 lg:gap-16 xl:gap-20 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
       {properties.map((property) => (
         <PropertyCard key={property.id} property={property} />
       ))}

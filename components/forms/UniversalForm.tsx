@@ -103,8 +103,8 @@ export default function UniversalForm({
   if (isSubmitted) {
     return (
       <div className={`text-center ${className}`}>
-        <div className="bg-green-50 border border-green-200 rounded-xl p-6 max-w-md mx-auto">
-          <h3 className="text-xl font-bold text-green-800 mb-2">Thank you for your submission!</h3>
+        <div className="bg-green-50 border border-green-200 rounded-xl p-4 md:p-6 max-w-md mx-auto">
+          <h3 className="text-lg md:text-xl font-bold text-green-800 mb-2">Thank you for your submission!</h3>
           <button onClick={reset} className="text-green-600 hover:text-green-800 font-medium text-sm underline mt-4">
             Submit Another
           </button>
@@ -116,39 +116,39 @@ export default function UniversalForm({
   return (
     <form
       onSubmit={handleFormSubmit}
-      className={`${className} p-2 sm:p-3 rounded-2xl`}
+      className={`${className} p-2 sm:p-3 rounded-xl md:rounded-2xl`}
       noValidate
     >
       {/* Header */}
-      <div className="text-center mb-2">
+      <div className="text-center mb-2 md:mb-3">
         {title && (
-          <h3 className="text-xl font-bold text-orange-500 mb-1 flex items-center justify-center">
-            <Calendar className="w-5 h-5 mr-1" />
+          <h3 className="text-lg md:text-xl font-bold text-orange-500 mb-1 flex items-center justify-center">
+            <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-1" />
             {title}
           </h3>
         )}
         {description && (
-          <p className="text-gray-600 text-xs">{description}</p>
+          <p className="text-gray-600 text-xs md:text-sm">{description}</p>
         )}
       </div>
 
       {/* Submit Error */}
       {submitError && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-2 mb-2 flex items-start">
-          <AlertCircle className="h-5 w-5 text-red-500 mr-1 mt-0.5" />
-          <p className="text-red-700 text-xs">{submitError}</p>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-2 md:p-3 mb-2 md:mb-3 flex items-start">
+          <AlertCircle className="h-4 w-4 md:h-5 md:w-5 text-red-500 mr-1 mt-0.5 flex-shrink-0" />
+          <p className="text-red-700 text-xs md:text-sm">{submitError}</p>
         </div>
       )}
 
       {/* Fields */}
-      <div className="space-y-2">
+      <div className="space-y-3 md:space-y-4">
         {/* Full Name */}
         <div>
           <label
             htmlFor="fullName"
-            className="block text-xs font-semibold text-gray-700 mb-1"
+            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
           >
-            <User className="w-4 h-4 inline mr-1" />
+            <User className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Full Name
           </label>
           <input
@@ -156,7 +156,7 @@ export default function UniversalForm({
             id="fullName"
             value={data.fullName}
             onChange={(e) => updateField("fullName", e.target.value)}
-            className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition ${errors.fullName
+            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.fullName
               ? "border-red-500 bg-red-50"
               : "border-gray-300 hover:border-gray-400"
               }`}
@@ -164,7 +164,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.fullName}
           />
           {errors.fullName && (
-            <p className="text-red-500 text-2xs mt-1 ml-1">
+            <p className="text-red-500 text-xs mt-1 ml-1">
               {errors.fullName}
             </p>
           )}
@@ -174,9 +174,9 @@ export default function UniversalForm({
         <div>
           <label
             htmlFor="email"
-            className="block text-xs font-semibold text-gray-700 mb-1"
+            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
           >
-            <Mail className="w-4 h-4 inline mr-1" />
+            <Mail className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Email
           </label>
           <input
@@ -184,7 +184,7 @@ export default function UniversalForm({
             id="email"
             value={data.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition ${errors.email
+            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.email
               ? "border-red-500 bg-red-50"
               : "border-gray-300 hover:border-gray-400"
               }`}
@@ -192,7 +192,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.email}
           />
           {errors.email && (
-            <p className="text-red-500 text-2xs mt-1 ml-1">{errors.email}</p>
+            <p className="text-red-500 text-xs mt-1 ml-1">{errors.email}</p>
           )}
         </div>
 
@@ -200,9 +200,9 @@ export default function UniversalForm({
         <div>
           <label
             htmlFor="phone"
-            className="block text-xs font-semibold text-gray-700 mb-1"
+            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
           >
-            <Phone className="w-4 h-4 inline mr-1" />
+            <Phone className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Phone Number
           </label>
           <input
@@ -210,7 +210,7 @@ export default function UniversalForm({
             id="phone"
             value={data.phone}
             onChange={(e) => updateField("phone", e.target.value)}
-            className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition ${errors.phone
+            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.phone
               ? "border-red-500 bg-red-50"
               : "border-gray-300 hover:border-gray-400"
               }`}
@@ -218,7 +218,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.phone}
           />
           {errors.phone && (
-            <p className="text-red-500 text-2xs mt-1 ml-1">{errors.phone}</p>
+            <p className="text-red-500 text-xs mt-1 ml-1">{errors.phone}</p>
           )}
         </div>
 
@@ -228,9 +228,9 @@ export default function UniversalForm({
             <div>
               <label
                 htmlFor="propertyCategory"
-                className="block text-xs font-semibold text-gray-700 mb-1"
+                className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
               >
-                <Home className="w-4 h-4 inline mr-1" />
+                <Home className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
                 Property Category
               </label>
               <select
@@ -240,7 +240,7 @@ export default function UniversalForm({
                   updateField("propertyCategory", e.target.value)
                   updateField("project", "")
                 }}
-                className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white ${errors.propertyCategory
+                className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.propertyCategory
                   ? "border-red-500 bg-red-50"
                   : "border-gray-300 hover:border-gray-400"
                   }`}
@@ -251,19 +251,19 @@ export default function UniversalForm({
                 <option value="Commercial">Commercial</option>
               </select>
               {errors.propertyCategory && (
-                <p className="text-red-500 text-2xs mt-1 ml-1">
+                <p className="text-red-500 text-xs mt-1 ml-1">
                   {errors.propertyCategory}
                 </p>
               )}
             </div>
 
             {/* BHK & Budget Side by Side */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-3 md:gap-4">
               {/* BHK / Type */}
               <div>
                 <label
                   htmlFor="project"
-                  className="block text-xs font-semibold text-gray-700 mb-1"
+                  className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
                 >
                   {data.propertyCategory === "Residential"
                     ? "BHK Type"
@@ -273,7 +273,7 @@ export default function UniversalForm({
                   id="project"
                   value={data.project || ""}
                   onChange={(e) => updateField("project", e.target.value)}
-                  className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white ${errors.project
+                  className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.project
                     ? "border-red-500 bg-red-50"
                     : "border-gray-300 hover:border-gray-400"
                     }`}
@@ -304,7 +304,7 @@ export default function UniversalForm({
                   )}
                 </select>
                 {errors.project && (
-                  <p className="text-red-500 text-2xs mt-1 ml-1">
+                  <p className="text-red-500 text-xs mt-1 ml-1">
                     {errors.project}
                   </p>
                 )}
@@ -314,16 +314,16 @@ export default function UniversalForm({
               <div>
                 <label
                   htmlFor="budget"
-                  className="block text-xs font-semibold text-gray-700 mb-1"
+                  className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
                 >
-                  <DollarSign className="w-4 h-4 inline mr-1" />
+                  <DollarSign className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
                   Budget Range
                 </label>
                 <select
                   id="budget"
                   value={data.budget}
                   onChange={(e) => updateField("budget", e.target.value)}
-                  className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white ${errors.budget
+                  className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.budget
                     ? "border-red-500 bg-red-50"
                     : "border-gray-300 hover:border-gray-400"
                     }`}
@@ -340,7 +340,7 @@ export default function UniversalForm({
                   <option value="7 Cr+">7 Cr+</option>
                 </select>
                 {errors.budget && (
-                  <p className="text-red-500 text-2xs mt-1 ml-1">
+                  <p className="text-red-500 text-xs mt-1 ml-1">
                     {errors.budget}
                   </p>
                 )}
@@ -354,7 +354,7 @@ export default function UniversalForm({
           <div>
             <label
               htmlFor="message"
-              className="block text-xs font-semibold text-gray-700 mb-1"
+              className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
             >
               Message
             </label>
@@ -363,7 +363,7 @@ export default function UniversalForm({
               value={data.message}
               onChange={(e) => updateField("message", e.target.value)}
               rows={3}
-              className={`w-full px-3 py-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none ${errors.message
+              className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none text-sm md:text-base ${errors.message
                 ? "border-red-500 bg-red-50"
                 : "border-gray-300 hover:border-gray-400"
                 }`}
@@ -371,7 +371,7 @@ export default function UniversalForm({
               aria-invalid={!!errors.message}
             />
             {errors.message && (
-              <p className="text-red-500 text-2xs mt-1 ml-1">
+              <p className="text-red-500 text-xs mt-1 ml-1">
                 {errors.message}
               </p>
             )}
@@ -382,7 +382,7 @@ export default function UniversalForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-2 rounded-lg transition transform disabled:scale-100 flex items-center justify-center"
+          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-2.5 md:py-3 rounded-lg transition transform disabled:scale-100 flex items-center justify-center text-sm md:text-base"
         >
           {isSubmitting ? (
             <>
@@ -400,7 +400,7 @@ export default function UniversalForm({
 
         {/* Secure note */}
         {type === "booking" && (
-          <p className="text-2xs text-gray-500 text-center pt-1">
+          <p className="text-xs text-gray-500 text-center pt-1">
             🔒 Your information is secure
           </p>
         )}
