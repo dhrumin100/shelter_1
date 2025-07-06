@@ -36,9 +36,7 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
-            <span className="text-sm font-semibold text-orange-700">
-              SHELTER4U
-            </span>
+            <span className="text-xs font-medium text-gray-600">Gift City Gujarat</span>
           </div>
 
           {/* Hamburger Menu Button */}
@@ -96,9 +94,7 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
             {/* Logo + Badge (left) */}
             <div className="flex items-center gap-3 min-w-[200px] lg:min-w-[250px] flex-grow">
               <Image src="/images/logo.png" alt="Logo" width={48} height={48} />
-              <span className="text-sm lg:text-base xl:text-lg font-semibold text-orange-700 pl-2 whitespace-nowrap">
-                AUTHORISED CHANNEL PARTNER SHELTER4U
-              </span>
+              <span className="text-xs lg:text-sm xl:text-base text-gray-600 pl-2 whitespace-nowrap">Gift City Gujarat</span>
             </div>
 
             {/* Nav (center) */}

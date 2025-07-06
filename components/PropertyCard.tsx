@@ -82,7 +82,7 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
   return (
     <>
-      <article className="group bg-gradient-white-soft rounded-xl md:rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-soft transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 border border-gray-100">
+      <article className="group bg-gradient-white-soft rounded-xl md:rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-medium focus-within:shadow-orange-medium transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 focus-within:scale-105 border border-gray-100 outline-none focus-within:ring-2 focus-within:ring-orange-400">
         {/* Property Image with Consistent Theme */}
         <div className="relative h-48 sm:h-56 w-full bg-gradient-gray-light overflow-hidden">
           {imageLoading && (

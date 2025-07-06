@@ -28,7 +28,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
         <div className="absolute inset-0 flex flex-col justify-center px-4 md:px-12">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">{property.name}</h1>
-            <p className="text-xl text-white/90 mb-4">{property.bhk} BHK in Adani Shantigram</p>
+            <p className="text-xl text-white/90 mb-4">{property.bhk} BHK in Gift City Gujarat</p>
             <p className="text-2xl font-bold text-white mb-6">
               ₹{property.price} {property.priceUnit} {property.priceDescription || "Onwards All Inclusive"}
             </p>

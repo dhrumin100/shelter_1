@@ -46,13 +46,24 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(enquiryData),
       });
-      if (!res.ok) throw new Error('Failed to submit');
-      // Only after successful API call, open WhatsApp
-      const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
-      const message = `Enquiry:\nName: ${enquiryData.fullName}\nEmail: ${enquiryData.email}\nPhone: ${enquiryData.phone}\nProperty: ${enquiryData.propertyName}\nCategory: ${enquiryData.propertyCategory}\nMessage: ${enquiryData.message}`;
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+
+      const result = await res.json();
+
+      if (result.success) {
+        // Only open WhatsApp after successful API submission
+        const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
+        const message = `Enquiry:\nName: ${enquiryData.fullName}\nEmail: ${enquiryData.email}\nPhone: ${enquiryData.phone}\nProperty: ${enquiryData.propertyName}\nCategory: ${enquiryData.propertyCategory}\nMessage: ${enquiryData.message}`;
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
     } catch (err) {
-      alert('Submission failed. Please try again.');
+      alert(err instanceof Error ? err.message : 'Submission failed. Please try again.');
       console.error(err);
     }
   }

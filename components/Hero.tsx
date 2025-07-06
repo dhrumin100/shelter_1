@@ -40,7 +40,7 @@ export default function Hero({
       <div className="absolute inset-0">
         <Image
           src={backgroundImage}
-          alt="Hero background"
+          alt="Hero background for Gift City Gujarat real estate projects"
           fill
           priority
           className="object-cover object-center"
@@ -67,7 +67,7 @@ export default function Hero({
                 {/* Main Heading with Premium Gradient */}
                 <div className="mb-6 md:mb-8">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 md:mb-6 animate-fade-in-up">
-                    {title}
+                    Discover your dream property in Gift City Gujarat
                   </h1>
                 </div>
 
@@ -80,7 +80,7 @@ export default function Hero({
                 <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-8 md:mb-12">
                   <button
                     onClick={handleScrollToProperties}
-                    className="group bg-gradient-orange-warm hover:shadow-orange-medium text-white font-bold px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-2xl text-base md:text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 shadow-orange-soft w-full sm:w-auto"
+                    className="group bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:shadow-orange-medium text-white font-bold px-8 md:px-10 lg:px-12 py-4 md:py-5 lg:py-6 rounded-2xl text-lg md:text-xl lg:text-2xl transition-all duration-300 transform hover:scale-110 shadow-orange-soft w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-orange-400"
                   >
                     <span className="flex items-center justify-center">
                       {buttonText}
@@ -131,7 +131,7 @@ export default function Hero({
             {/* Right Content - Premium Booking Form */}
             <div className="lg:col-span-6 xl:col-span-7 order-2 lg:order-2 flex justify-center lg:justify-end items-center">
               <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl">
-                <div className="bg-gradient-to-br from-warm-white via-cream-50 to-orange-50 backdrop-blur-lg rounded-2xl md:rounded-3xl shadow-orange-medium p-6 md:p-8 lg:p-10 border border-orange-100/50 hover:shadow-orange-soft transition-shadow duration-500 mt-2 md:mt-12">
+                <div className="bg-white/90 rounded-2xl md:rounded-3xl shadow-lg p-6 md:p-8 lg:p-10 border border-orange-100 hover:shadow-orange-soft transition-shadow duration-500 mt-2 md:mt-12">
                   <div className="text-center mb-4 md:mb-6">
                     <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent mb-2">
                       Book Your Site Visit
@@ -148,6 +148,9 @@ export default function Hero({
 
       {/* Bottom Gradient with Premium Colors */}
       <div className="absolute bottom-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-t from-cream-50/30 to-transparent pointer-events-none"></div>
+
+      {/* Mobile divider */}
+      <div className="block md:hidden my-8 border-t-2 border-orange-100 w-full" />
     </section>
   )
 }

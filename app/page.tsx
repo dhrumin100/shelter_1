@@ -113,8 +113,8 @@ export default function Home() {
       <Hero
         title={
           activeTab === "residential"
-            ? "Discover Your Dream Home"
-            : "Find Your Perfect Business Space"
+            ? "Discover your dream home in Gift City Gujarat"
+            : "Find your perfect business space in Gift City Gujarat"
         }
         subtitle={
           activeTab === "residential"

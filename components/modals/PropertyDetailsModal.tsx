@@ -115,7 +115,7 @@ export default function PropertyDetailsModal({ isOpen, onClose, property }: Prop
     const phoneNumber = "9714512452"
     const isCommercial = property.category === "commercial"
 
-    const message = `Hi, I'm interested in ${property.name} at Adani Shantigram. Please send me the ${planTitle} for this ${isCommercial ? property.type : `${property.bhk} BHK ${property.type}`}.
+    const message = `Hi, I'm interested in ${property.name} at Gift City Gujarat. Please send me the ${planTitle} for this ${isCommercial ? property.type : `${property.bhk} BHK ${property.type}`}.
 
 Property Details:
 - Name: ${property.name}
@@ -185,12 +185,11 @@ Thank you!`
         {/* Modal Container with Enhanced Design */}
         <div className="flex h-full items-center justify-center p-2">
           <div
-            className={`relative bg-white rounded-3xl shadow-2xl w-full h-full max-w-[95vw] max-h-[95vh] overflow-hidden transform transition-all duration-500 border border-gray-100 ${
-              isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
-            }`}
+            className={`relative bg-white rounded-3xl shadow-2xl w-full h-full max-w-[95vw] max-h-[95vh] overflow-hidden transform transition-all duration-500 border border-gray-100 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+              }`}
           >
             {/* Enhanced Header with Better Transparency */}
-            <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-r from-black/90 via-black/85 to-black/80 backdrop-blur-md border-b border-white/10">
+            <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-r from-black/70 via-black/60 to-black/50 backdrop-blur-md border-b border-white/10">
               <div className="flex items-center justify-between p-6">
                 <div className="flex items-center space-x-6">
                   <button
@@ -201,8 +200,8 @@ Thank you!`
                     <X className="h-6 w-6 text-white" />
                   </button>
                   <div className="text-white">
-                    <h1 className="text-2xl font-bold mb-1 drop-shadow-lg">{property.name}</h1>
-                    <p className="text-white/90 text-lg drop-shadow-md">
+                    <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-1 drop-shadow-lg">{property.name}</h1>
+                    <p className="text-white/90 text-sm sm:text-base md:text-lg drop-shadow-md">
                       {propertyTypeText} in {property.location}
                     </p>
                   </div>
@@ -211,11 +210,10 @@ Thank you!`
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => setIsLiked(!isLiked)}
-                    className={`p-3 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 ${
-                      isLiked
-                        ? "bg-orange-500 text-white scale-110 shadow-lg"
-                        : "bg-white/20 hover:bg-white/30 text-white hover:scale-110"
-                    }`}
+                    className={`p-3 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 ${isLiked
+                      ? "bg-orange-500 text-white scale-110 shadow-lg"
+                      : "bg-white/20 hover:bg-white/30 text-white hover:scale-110"
+                      }`}
                   >
                     <Heart className={`h-6 w-6 ${isLiked ? "fill-current" : ""}`} />
                   </button>
@@ -296,11 +294,10 @@ Thank you!`
                             <button
                               key={index}
                               onClick={() => setCurrentImageIndex(index)}
-                              className={`relative aspect-square rounded-xl overflow-hidden border-3 transition-all duration-200 hover:scale-105 group ${
-                                currentImageIndex === index
-                                  ? "border-orange-500 shadow-orange-soft ring-2 ring-orange-200"
-                                  : "border-gray-200 hover:border-orange-300 hover:shadow-lg"
-                              }`}
+                              className={`relative aspect-square rounded-xl overflow-hidden border-3 transition-all duration-200 hover:scale-105 group ${currentImageIndex === index
+                                ? "border-orange-500 shadow-orange-soft ring-2 ring-orange-200"
+                                : "border-gray-200 hover:border-orange-300 hover:shadow-lg"
+                                }`}
                             >
                               <Image
                                 src={image || "/placeholder.svg?height=120&width=120"}
@@ -344,9 +341,8 @@ Thank you!`
                           <div>
                             <div className="flex items-center space-x-3 mb-4">
                               <span
-                                className={`px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20 ${
-                                  isCommercial ? "bg-orange-600/90" : "bg-orange-500/90"
-                                }`}
+                                className={`px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20 ${isCommercial ? "bg-orange-600/90" : "bg-orange-500/90"
+                                  }`}
                               >
                                 {isCommercial ? "🏢 Commercial" : "🏠 Residential"}
                               </span>
@@ -397,14 +393,19 @@ Thank you!`
                     return (
                       <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`flex items-center px-8 py-5 text-base font-semibold whitespace-nowrap border-b-3 transition-all duration-300 ${
-                          activeTab === tab.id
-                            ? "border-orange-500 text-orange-600 bg-orange-50/80 backdrop-blur-sm shadow-sm"
-                            : "border-transparent text-gray-600 hover:text-orange-600 hover:bg-orange-25/50 hover:border-orange-200"
-                        }`}
+                        onClick={() => {
+                          setActiveTab(tab.id)
+                          const section = document.getElementById(`section-${tab.id}`)
+                          if (section) {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                          }
+                        }}
+                        className={`flex items-center px-8 py-5 text-base font-semibold whitespace-nowrap border-b-3 transition-all duration-300 ${activeTab === tab.id
+                          ? "border-orange-500 text-orange-600 bg-orange-50/80 backdrop-blur-sm shadow-sm"
+                          : "border-transparent text-gray-600 hover:text-orange-600 hover:bg-orange-25/50 hover:border-orange-200"
+                          }`}
                       >
-                        <Icon className="h-5 w-5 mr-3" />
+                        <Icon className="h-5 w-5 mr-2" />
                         {tab.label}
                       </button>
                     )
@@ -413,8 +414,9 @@ Thank you!`
               </div>
 
               {/* Tab Content */}
-              <div className="p-8 bg-gradient-to-b from-white to-gray-50/50">
-                {activeTab === "overview" && (
+              <div className="px-4 md:px-8 py-8 space-y-12 max-w-5xl mx-auto">
+                {/* Overview Section */}
+                <section id="section-overview" className="scroll-mt-32">
                   <div className="space-y-10">
                     {/* Quick Stats Grid */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -516,9 +518,9 @@ Thank you!`
                       </div>
                     )}
                   </div>
-                )}
-
-                {activeTab === "gallery" && (
+                </section>
+                {/* Gallery Section */}
+                <section id="section-gallery" className="scroll-mt-32">
                   <div className="space-y-8">
                     <div className="text-center bg-gradient-orange-light rounded-2xl p-8 border border-orange-200">
                       <h3 className="text-2xl font-bold text-orange-800 mb-4">Experience Virtual Tour</h3>
@@ -529,16 +531,16 @@ Thank you!`
                       </button>
                     </div>
                   </div>
-                )}
-
-                {activeTab === "amenities" && (
+                </section>
+                {/* Amenities Section */}
+                <section id="section-amenities" className="scroll-mt-32">
                   <div className="space-y-8">
                     <h2 className="text-3xl font-bold text-gray-800">Amenities & Features</h2>
                     <PropertyAmenities amenities={property.amenities} />
                   </div>
-                )}
-
-                {activeTab === "plans" && (
+                </section>
+                {/* Floor Plans Section */}
+                <section id="section-plans" className="scroll-mt-32">
                   <div className="space-y-8">
                     <h2 className="text-3xl font-bold text-gray-800">Floor Plans & Layouts</h2>
                     <p className="text-gray-600 text-lg">Download detailed plans and layouts for {property.name}</p>
@@ -599,9 +601,9 @@ Thank you!`
                       </div>
                     </div>
                   </div>
-                )}
-
-                {activeTab === "pricing" && (
+                </section>
+                {/* Pricing Section */}
+                <section id="section-pricing" className="scroll-mt-32">
                   <div className="space-y-8">
                     <div className="bg-gradient-orange-light rounded-2xl p-8 border border-orange-200 shadow-orange-soft">
                       <h2 className="text-3xl font-bold mb-8 text-orange-800">Pricing Details</h2>
@@ -690,9 +692,9 @@ Thank you!`
                       </div>
                     </div>
                   </div>
-                )}
-
-                {activeTab === "contact" && (
+                </section>
+                {/* Contact Section */}
+                <section id="section-contact" className="scroll-mt-32">
                   <div className="space-y-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                       {/* Contact Information */}
@@ -748,7 +750,7 @@ Thank you!`
                       </div>
                     </div>
                   </div>
-                )}
+                </section>
               </div>
             </div>
           </div>

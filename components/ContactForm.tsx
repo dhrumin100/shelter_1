@@ -44,14 +44,25 @@ export default function ContactForm({ propertyName, property = {} }: ContactForm
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error('Failed to submit');
-      // Only after successful API call, open WhatsApp
-      const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
-      const message = `Contact:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nProperty: ${payload.propertyName}\nCategory: ${payload.propertyCategory}\nMessage: ${payload.message}`;
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
-      setSubmitted(true);
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+
+      const result = await res.json();
+
+      if (result.success) {
+        // Only open WhatsApp after successful API submission
+        const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
+        const message = `Contact:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nProperty: ${payload.propertyName}\nCategory: ${payload.propertyCategory}\nMessage: ${payload.message}`;
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        setSubmitted(true);
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
     } catch (err) {
-      alert('Submission failed. Please try again.');
+      alert(err instanceof Error ? err.message : 'Submission failed. Please try again.');
       console.error(err);
     }
   }

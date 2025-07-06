@@ -9,9 +9,9 @@ import Header from "@/components/Header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Adani Shantigram - Residential & Commercial Properties",
+  title: "Gift City Gujarat - Residential & Commercial Properties",
   description:
-    "Explore premium residential and commercial projects in Adani Shantigram, Ahmedabad. From luxury apartments to modern office spaces.",
+    "Explore premium residential and commercial projects in Gift City Gujarat, Ahmedabad. From luxury apartments to modern office spaces.",
   generator: 'v0.dev'
 }
 

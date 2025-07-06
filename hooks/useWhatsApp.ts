@@ -24,7 +24,7 @@ export const useWhatsApp = ({ phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUM
 
   const sendPropertyEnquiry = useCallback(
     (propertyName: string, additionalInfo?: string) => {
-      const message = `Hi, I'm interested in ${propertyName} at Adani Shantigram.${additionalInfo ? ` ${additionalInfo}` : ""}`
+      const message = `Hi, I'm interested in ${propertyName} at Gift City Gujarat.${additionalInfo ? ` ${additionalInfo}` : ""}`
       sendMessage(message)
     },
     [sendMessage],

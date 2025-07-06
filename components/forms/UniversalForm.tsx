@@ -141,12 +141,12 @@ export default function UniversalForm({
       )}
 
       {/* Fields */}
-      <div className="space-y-3 md:space-y-4">
+      <div className="space-y-6 md:space-y-8">
         {/* Full Name */}
         <div>
           <label
             htmlFor="fullName"
-            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+            className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
           >
             <User className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Full Name
@@ -164,7 +164,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.fullName}
           />
           {errors.fullName && (
-            <p className="text-red-500 text-xs mt-1 ml-1">
+            <p className="text-red-600 text-xs mt-1 ml-1">
               {errors.fullName}
             </p>
           )}
@@ -174,7 +174,7 @@ export default function UniversalForm({
         <div>
           <label
             htmlFor="email"
-            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+            className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
           >
             <Mail className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Email
@@ -192,7 +192,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.email}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs mt-1 ml-1">{errors.email}</p>
+            <p className="text-red-600 text-xs mt-1 ml-1">{errors.email}</p>
           )}
         </div>
 
@@ -200,7 +200,7 @@ export default function UniversalForm({
         <div>
           <label
             htmlFor="phone"
-            className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+            className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
           >
             <Phone className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
             Phone Number
@@ -218,7 +218,7 @@ export default function UniversalForm({
             aria-invalid={!!errors.phone}
           />
           {errors.phone && (
-            <p className="text-red-500 text-xs mt-1 ml-1">{errors.phone}</p>
+            <p className="text-red-600 text-xs mt-1 ml-1">{errors.phone}</p>
           )}
         </div>
 
@@ -228,7 +228,7 @@ export default function UniversalForm({
             <div>
               <label
                 htmlFor="propertyCategory"
-                className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+                className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
               >
                 <Home className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
                 Property Category
@@ -251,7 +251,7 @@ export default function UniversalForm({
                 <option value="Commercial">Commercial</option>
               </select>
               {errors.propertyCategory && (
-                <p className="text-red-500 text-xs mt-1 ml-1">
+                <p className="text-red-600 text-xs mt-1 ml-1">
                   {errors.propertyCategory}
                 </p>
               )}
@@ -263,7 +263,7 @@ export default function UniversalForm({
               <div>
                 <label
                   htmlFor="project"
-                  className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+                  className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
                 >
                   {data.propertyCategory === "Residential"
                     ? "BHK Type"
@@ -304,7 +304,7 @@ export default function UniversalForm({
                   )}
                 </select>
                 {errors.project && (
-                  <p className="text-red-500 text-xs mt-1 ml-1">
+                  <p className="text-red-600 text-xs mt-1 ml-1">
                     {errors.project}
                   </p>
                 )}
@@ -314,7 +314,7 @@ export default function UniversalForm({
               <div>
                 <label
                   htmlFor="budget"
-                  className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+                  className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
                 >
                   <DollarSign className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
                   Budget Range
@@ -340,7 +340,7 @@ export default function UniversalForm({
                   <option value="7 Cr+">7 Cr+</option>
                 </select>
                 {errors.budget && (
-                  <p className="text-red-500 text-xs mt-1 ml-1">
+                  <p className="text-red-600 text-xs mt-1 ml-1">
                     {errors.budget}
                   </p>
                 )}
@@ -354,7 +354,7 @@ export default function UniversalForm({
           <div>
             <label
               htmlFor="message"
-              className="block text-xs md:text-sm font-semibold text-gray-700 mb-1 md:mb-2"
+              className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
             >
               Message
             </label>
@@ -371,7 +371,7 @@ export default function UniversalForm({
               aria-invalid={!!errors.message}
             />
             {errors.message && (
-              <p className="text-red-500 text-xs mt-1 ml-1">
+              <p className="text-red-600 text-xs mt-1 ml-1">
                 {errors.message}
               </p>
             )}
@@ -382,7 +382,7 @@ export default function UniversalForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-2.5 md:py-3 rounded-lg transition transform disabled:scale-100 flex items-center justify-center text-sm md:text-base"
+          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-3 md:py-4 rounded-lg transition transform disabled:scale-100 flex items-center justify-center text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
         >
           {isSubmitting ? (
             <>

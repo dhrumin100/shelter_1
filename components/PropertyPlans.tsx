@@ -12,7 +12,7 @@ export default function PropertyPlans({ property }: PropertyPlansProps) {
       id: "master",
       title: "Master Plan",
       image: "/placeholder.svg?height=300&width=400",
-      whatsappMessage: `Hi, I'm interested in ${property.name} at Adani Shantigram. Please send me the Master Plan for this ${property.bhk} BHK ${property.type}. 
+      whatsappMessage: `Hi, I'm interested in ${property.name} at Gift City Gujarat. Please send me the Master Plan for this ${property.bhk} BHK ${property.type}. 
 
 Property Details:
 - Name: ${property.name}
@@ -27,7 +27,7 @@ Thank you!`,
       id: "floor",
       title: "Floor Plan",
       image: "/placeholder.svg?height=300&width=400",
-      whatsappMessage: `Hi, I'm interested in ${property.name} at Adani Shantigram. Please send me the Floor Plan for this ${property.bhk} BHK ${property.type}.
+      whatsappMessage: `Hi, I'm interested in ${property.name} at Gift City Gujarat. Please send me the Floor Plan for this ${property.bhk} BHK ${property.type}.
 
 Property Details:
 - Name: ${property.name}
@@ -42,7 +42,7 @@ Thank you!`,
       id: "costing",
       title: "Costing Details",
       image: "/placeholder.svg?height=300&width=400",
-      whatsappMessage: `Hi, I'm interested in ${property.name} at Adani Shantigram. Please send me the detailed Costing Information for this ${property.bhk} BHK ${property.type}.
+      whatsappMessage: `Hi, I'm interested in ${property.name} at Gift City Gujarat. Please send me the detailed Costing Information for this ${property.bhk} BHK ${property.type}.
 
 Property Details:
 - Name: ${property.name}

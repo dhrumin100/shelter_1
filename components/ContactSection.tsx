@@ -33,20 +33,33 @@ export default function ContactSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error('Failed to submit');
-      // Only after successful API call, open WhatsApp
-      const phoneNumber = "9714512452";
-      const message = `Contact Request:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nMessage: ${payload.message}`;
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, "_blank");
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+
+      const result = await res.json();
+
+      if (result.success) {
+        // Only open WhatsApp after successful API submission
+        const phoneNumber = "9714512452";
+        const message = `Contact Request:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nMessage: ${payload.message}`;
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+
+        // Reset form only after successful submission
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
     } catch (err) {
-      alert('Submission failed. Please try again.');
+      alert(err instanceof Error ? err.message : 'Submission failed. Please try again.');
       console.error(err);
     }
   }
@@ -58,9 +71,9 @@ export default function ContactSection() {
           Get In Touch
         </h2>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
           <p className="text-center text-gray-700 mb-8 md:mb-12 text-base md:text-lg px-4">
-            Want to know more about Adani Shantigram? Contact our expert team for detailed information about the
+            Want to know more about Gift City Gujarat? Contact our expert team for detailed information about the
             project.
           </p>
 

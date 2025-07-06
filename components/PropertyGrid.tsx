@@ -31,10 +31,13 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
 
   // Enhanced responsive grid with better spacing for all screen sizes
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
-      {properties.map((property) => (
-        <PropertyCard key={property.id} property={property} />
-      ))}
-    </div>
+    <>
+      <div className="my-8 border-t-2 border-orange-100 w-full max-w-7xl mx-auto" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 lg:gap-14 xl:gap-20 max-w-7xl mx-auto">
+        {properties.map((property) => (
+          <PropertyCard key={property.id} property={property} />
+        ))}
+      </div>
+    </>
   )
 }
