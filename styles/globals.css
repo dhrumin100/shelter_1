@@ -10,15 +10,26 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .bg-orange-solid {
+    background-color: #ffedd5;
+  }
+
+  .bg-gradient-orange-light {
+    background: linear-gradient(135deg, #fff8f1 0%, #ffedd5 50%, #fed7aa 100%);
+  }
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 33 100% 90%;
+    /* hsl for #ffedd5 */
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 33 100% 90%;
+    /* hsl for #ffedd5 */
     --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
+    --popover: 33 100% 90%;
+    /* hsl for #ffedd5 */
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
@@ -48,6 +59,7 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -88,7 +100,23 @@ body {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-orange-light text-foreground;
   }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
 }

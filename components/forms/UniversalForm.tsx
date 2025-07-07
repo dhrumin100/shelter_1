@@ -13,8 +13,9 @@ import {
   Mail,
   Phone,
   Home,
-  DollarSign,
+  IndianRupee,
 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface UniversalFormProps {
   type: "contact" | "booking" | "enquiry"
@@ -115,20 +116,26 @@ export default function UniversalForm({
 
   return (
     <form
+      className={cn(
+        "w-full max-w-xl mx-auto rounded-2xl p-6 md:p-8",
+        className
+      )}
       onSubmit={handleFormSubmit}
-      className={`${className} p-2 sm:p-3 rounded-xl md:rounded-2xl`}
       noValidate
     >
       {/* Header */}
       <div className="text-center mb-2 md:mb-3">
         {title && (
-          <h3 className="text-lg md:text-xl font-bold text-orange-500 mb-1 flex items-center justify-center">
-            <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-1" />
-            {title}
-          </h3>
+          <>
+            <h3 className="text-xl md:text-2xl font-bold text-orange-600 mb-1 flex items-center justify-center">
+              <Calendar className="w-5 h-5 md:w-6 md:h-6 mr-2" />
+              {title}
+            </h3>
+            <div className="w-12 h-1 bg-orange-300 rounded mx-auto mb-2" />
+          </>
         )}
         {description && (
-          <p className="text-gray-600 text-xs md:text-sm">{description}</p>
+          <p className="text-gray-600 text-xs md:text-sm mb-1">{description}</p>
         )}
       </div>
 
@@ -141,7 +148,7 @@ export default function UniversalForm({
       )}
 
       {/* Fields */}
-      <div className="space-y-6 md:space-y-8">
+      <div className="space-y-3 md:space-y-4">
         {/* Full Name */}
         <div>
           <label
@@ -156,7 +163,7 @@ export default function UniversalForm({
             id="fullName"
             value={data.fullName}
             onChange={(e) => updateField("fullName", e.target.value)}
-            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.fullName
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-base bg-orange-50 ${errors.fullName
               ? "border-red-500 bg-red-50"
               : "border-gray-300 hover:border-gray-400"
               }`}
@@ -184,7 +191,7 @@ export default function UniversalForm({
             id="email"
             value={data.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.email
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-base bg-orange-50 ${errors.email
               ? "border-red-500 bg-red-50"
               : "border-gray-300 hover:border-gray-400"
               }`}
@@ -196,187 +203,156 @@ export default function UniversalForm({
           )}
         </div>
 
-        {/* Phone */}
-        <div>
-          <label
-            htmlFor="phone"
-            className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
-          >
-            <Phone className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            value={data.phone}
-            onChange={(e) => updateField("phone", e.target.value)}
-            className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm md:text-base ${errors.phone
-              ? "border-red-500 bg-red-50"
-              : "border-gray-300 hover:border-gray-400"
-              }`}
-            placeholder="Enter your phone"
-            aria-invalid={!!errors.phone}
-          />
-          {errors.phone && (
-            <p className="text-red-600 text-xs mt-1 ml-1">{errors.phone}</p>
-          )}
-        </div>
-
-        {type === "booking" && (
-          <>
-            {/* Category */}
-            <div>
-              <label
-                htmlFor="propertyCategory"
-                className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
-              >
-                <Home className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
-                Property Category
-              </label>
-              <select
-                id="propertyCategory"
-                value={data.propertyCategory || ""}
-                onChange={(e) => {
-                  updateField("propertyCategory", e.target.value)
-                  updateField("project", "")
-                }}
-                className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.propertyCategory
-                  ? "border-red-500 bg-red-50"
-                  : "border-gray-300 hover:border-gray-400"
-                  }`}
-                aria-invalid={!!errors.propertyCategory}
-              >
-                <option value="">Select Category</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
-              </select>
-              {errors.propertyCategory && (
-                <p className="text-red-600 text-xs mt-1 ml-1">
-                  {errors.propertyCategory}
-                </p>
-              )}
-            </div>
-
-            {/* BHK & Budget Side by Side */}
-            <div className="grid grid-cols-1 gap-3 md:gap-4">
-              {/* BHK / Type */}
-              <div>
-                <label
-                  htmlFor="project"
-                  className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
-                >
-                  {data.propertyCategory === "Residential"
-                    ? "BHK Type"
-                    : "Commercial Type"}
-                </label>
-                <select
-                  id="project"
-                  value={data.project || ""}
-                  onChange={(e) => updateField("project", e.target.value)}
-                  className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.project
-                    ? "border-red-500 bg-red-50"
-                    : "border-gray-300 hover:border-gray-400"
-                    }`}
-                  aria-invalid={!!errors.project}
-                >
-                  <option value="">
-                    {data.propertyCategory === "Residential"
-                      ? "Select BHK type"
-                      : "Select type"}
-                  </option>
-                  {data.propertyCategory === "Residential" && (
-                    <>
-                      <option value="1 BHK">1 BHK</option>
-                      <option value="2 BHK">2 BHK</option>
-                      <option value="3 BHK">3 BHK</option>
-                      <option value="4 BHK">4 BHK</option>
-                      <option value="Villa">Villa</option>
-                    </>
-                  )}
-                  {data.propertyCategory === "Commercial" && (
-                    <>
-                      <option value="Office">Office</option>
-                      <option value="Showroom">Showroom</option>
-                      <option value="Retail">Retail</option>
-                      <option value="Warehouse">Warehouse</option>
-                      <option value="Food Court">Food Court</option>
-                    </>
-                  )}
-                </select>
-                {errors.project && (
-                  <p className="text-red-600 text-xs mt-1 ml-1">
-                    {errors.project}
-                  </p>
-                )}
-              </div>
-
-              {/* Budget */}
-              <div>
-                <label
-                  htmlFor="budget"
-                  className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
-                >
-                  <DollarSign className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
-                  Budget Range
-                </label>
-                <select
-                  id="budget"
-                  value={data.budget}
-                  onChange={(e) => updateField("budget", e.target.value)}
-                  className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-white text-sm md:text-base ${errors.budget
-                    ? "border-red-500 bg-red-50"
-                    : "border-gray-300 hover:border-gray-400"
-                    }`}
-                  aria-invalid={!!errors.budget}
-                >
-                  <option value="">Select budget</option>
-                  <option value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
-                  <option value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
-                  <option value="2 Cr - 3 Cr">2 Cr - 3 Cr</option>
-                  <option value="3 Cr - 4 Cr">3 Cr - 4 Cr</option>
-                  <option value="4 Cr - 5 Cr">4 Cr - 5 Cr</option>
-                  <option value="5 Cr - 6 Cr">5 Cr - 6 Cr</option>
-                  <option value="6 Cr - 7 Cr">6 Cr - 7 Cr</option>
-                  <option value="7 Cr+">7 Cr+</option>
-                </select>
-                {errors.budget && (
-                  <p className="text-red-600 text-xs mt-1 ml-1">
-                    {errors.budget}
-                  </p>
-                )}
-              </div>
-            </div>
-          </>
-        )}
-
-        {/* Message for contact/enquiry */}
-        {type !== "booking" && (
+        {/* Phone & Property Category Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {/* Phone */}
           <div>
             <label
-              htmlFor="message"
+              htmlFor="phone"
               className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
             >
-              Message
+              <Phone className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
+              Phone Number
             </label>
-            <textarea
-              id="message"
-              value={data.message}
-              onChange={(e) => updateField("message", e.target.value)}
-              rows={3}
-              className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none text-sm md:text-base ${errors.message
+            <input
+              type="tel"
+              id="phone"
+              value={data.phone}
+              onChange={(e) => updateField("phone", e.target.value)}
+              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-base bg-orange-50 ${errors.phone
                 ? "border-red-500 bg-red-50"
                 : "border-gray-300 hover:border-gray-400"
                 }`}
-              placeholder="Tell us about your requirements..."
-              aria-invalid={!!errors.message}
+              placeholder="Enter your phone"
+              aria-invalid={!!errors.phone}
             />
-            {errors.message && (
+            {errors.phone && (
+              <p className="text-red-600 text-xs mt-1 ml-1">{errors.phone}</p>
+            )}
+          </div>
+
+          {/* Property Category */}
+          <div>
+            <label
+              htmlFor="propertyCategory"
+              className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
+            >
+              <Home className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
+              Property Category
+            </label>
+            <select
+              id="propertyCategory"
+              value={data.propertyCategory || ""}
+              onChange={(e) => {
+                updateField("propertyCategory", e.target.value)
+                updateField("project", "")
+              }}
+              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-orange-50 text-base ${errors.propertyCategory
+                ? "border-red-500 bg-red-50"
+                : "border-gray-300 hover:border-gray-400"
+                }`}
+              aria-invalid={!!errors.propertyCategory}
+            >
+              <option value="">Select Category</option>
+              <option value="Residential">Residential</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+            {errors.propertyCategory && (
               <p className="text-red-600 text-xs mt-1 ml-1">
-                {errors.message}
+                {errors.propertyCategory}
               </p>
             )}
           </div>
-        )}
+        </div>
+
+        {/* Commercial Type & Budget Range Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {/* Commercial Type */}
+          <div>
+            <label
+              htmlFor="project"
+              className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
+            >
+              {data.propertyCategory === "Residential"
+                ? "BHK Type"
+                : "Commercial Type"}
+            </label>
+            <select
+              id="project"
+              value={data.project || ""}
+              onChange={(e) => updateField("project", e.target.value)}
+              className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-orange-50 text-sm md:text-base ${errors.project
+                ? "border-red-500 bg-red-50"
+                : "border-gray-300 hover:border-gray-400"
+                }`}
+              aria-invalid={!!errors.project}
+            >
+              <option value="">
+                {data.propertyCategory === "Residential"
+                  ? "Select BHK type"
+                  : "Select type"}
+              </option>
+              {data.propertyCategory === "Residential" && (
+                <>
+                  <option value="1 BHK">1 BHK</option>
+                  <option value="2 BHK">2 BHK</option>
+                  <option value="3 BHK">3 BHK</option>
+                  <option value="4 BHK">4 BHK</option>
+                  <option value="Villa">Villa</option>
+                </>
+              )}
+              {data.propertyCategory === "Commercial" && (
+                <>
+                  <option value="Office">Office</option>
+                  <option value="Showroom">Showroom</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Warehouse">Warehouse</option>
+                  <option value="Food Court">Food Court</option>
+                </>
+              )}
+            </select>
+            {errors.project && (
+              <p className="text-red-600 text-xs mt-1 ml-1">
+                {errors.project}
+              </p>
+            )}
+          </div>
+
+          {/* Budget */}
+          <div>
+            <label
+              htmlFor="budget"
+              className="block text-xs md:text-sm font-semibold text-gray-800 mb-1 md:mb-2"
+            >
+              <IndianRupee className="w-3 h-3 md:w-4 md:h-4 inline mr-1" />
+              Budget Range
+            </label>
+            <select
+              id="budget"
+              value={data.budget}
+              onChange={(e) => updateField("budget", e.target.value)}
+              className={`w-full px-3 md:px-4 py-2 md:py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition appearance-none bg-orange-50 text-sm md:text-base ${errors.budget
+                ? "border-red-500 bg-red-50"
+                : "border-gray-300 hover:border-gray-400"
+                }`}
+              aria-invalid={!!errors.budget}
+            >
+              <option value="">Select budget</option>
+              <option value="50 Lakh - 1 Cr">₹50 Lakh - ₹1 Cr</option>
+              <option value="1 Cr - 1.5 Cr">₹1 Cr - ₹1.5 Cr</option>
+              <option value="1.5 Cr - 2 Cr">₹1.5 Cr - ₹2 Cr</option>
+              <option value="2 Cr - 3 Cr">₹2 Cr - ₹3 Cr</option>
+              <option value="3 Cr - 4 Cr">₹3 Cr - ₹4 Cr</option>
+              <option value="4 Cr - 5 Cr">₹4 Cr - ₹5 Cr</option>
+              <option value="5 Cr+">₹5 Cr+</option>
+            </select>
+            {errors.budget && (
+              <p className="text-red-600 text-xs mt-1 ml-1">
+                {errors.budget}
+              </p>
+            )}
+          </div>
+        </div>
 
         {/* Submit */}
         <button
@@ -388,13 +364,11 @@ export default function UniversalForm({
             <>
               <LoadingSpinner size="sm" className="mr-1" /> Sending...
             </>
-          ) : type === "booking" ? (
+          ) : (
             <>
               <Calendar className="w-4 h-4 mr-1" />
               Book Visit
             </>
-          ) : (
-            "Send Message"
           )}
         </button>
 

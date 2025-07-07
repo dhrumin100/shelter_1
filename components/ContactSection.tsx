@@ -79,7 +79,7 @@ export default function ContactSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-6 md:space-y-8">
-              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+              <div className="flex items-start p-4 md:p-6 bg-orange-solid rounded-xl md:rounded-2xl shadow-orange-soft border border-orange-200">
                 <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
                   <Phone className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
@@ -89,7 +89,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+              <div className="flex items-start p-4 md:p-6 bg-orange-solid rounded-xl md:rounded-2xl shadow-orange-soft border border-orange-200">
                 <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
                   <Mail className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
@@ -99,7 +99,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+              <div className="flex items-start p-4 md:p-6 bg-orange-solid rounded-xl md:rounded-2xl shadow-orange-soft border border-orange-200">
                 <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
                   <MapPin className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
@@ -109,7 +109,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start p-4 md:p-6 bg-gradient-white-soft rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+              <div className="flex items-start p-4 md:p-6 bg-orange-solid rounded-xl md:rounded-2xl shadow-orange-soft border border-orange-200">
                 <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-2 md:p-3 mr-3 md:mr-4 flex-shrink-0">
                   <Clock className="text-orange-700 h-5 w-5 md:h-6 md:w-6" />
                 </div>
@@ -120,7 +120,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="bg-gradient-white-soft p-6 md:p-8 rounded-xl md:rounded-2xl shadow-gray-soft border border-gray-200">
+            <div className="bg-orange-solid p-6 md:p-8 rounded-xl md:rounded-2xl shadow-orange-soft border border-orange-200">
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>

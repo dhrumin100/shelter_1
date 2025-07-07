@@ -22,23 +22,46 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
   return (
     <>
-      <div className="relative h-[500px] w-full">
-        <Image src={property.heroImage || property.image} alt={property.name} fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex flex-col justify-center px-4 md:px-12">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">{property.name}</h1>
-            <p className="text-xl text-white/90 mb-4">{property.bhk} BHK in Gift City Gujarat</p>
-            <p className="text-2xl font-bold text-white mb-6">
-              ₹{property.price} {property.priceUnit} {property.priceDescription || "Onwards All Inclusive"}
-            </p>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded transition-colors">
-              Request Brochure
-            </button>
+      {/* Top Bar/Header */}
+      <div className="w-full bg-orange-50 shadow-sm py-4 px-4 md:px-12 flex flex-col md:flex-row items-center justify-between">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">{property.name}</h1>
+          <p className="text-base text-gray-700">{property.location || "Gift City Gujarat"}</p>
+        </div>
+      </div>
+
+      {/* Hero Image - Clean, no overlays */}
+      <div className="relative h-[400px] w-full">
+        <Image src={property.heroImage || property.image} alt={property.name} fill priority className="object-cover rounded-none" />
+      </div>
+
+      {/* Essential Info Section (Price, BHK, Area, Possession, etc.) */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div className="flex flex-col items-center justify-center p-4 bg-orange-50 border rounded-lg">
+            <span className="text-xs text-gray-500 mb-1">Price</span>
+            <span className="text-lg font-bold text-orange-600">₹{property.price} {property.priceUnit}</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-4 bg-orange-50 border rounded-lg">
+            <span className="text-xs text-gray-500 mb-1">Carpet Area</span>
+            <span className="text-lg font-bold text-gray-800">{property.size} sqft</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-4 bg-orange-50 border rounded-lg">
+            <span className="text-xs text-gray-500 mb-1">Type</span>
+            <span className="text-lg font-bold text-gray-800">{property.bhk} BHK</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-4 bg-orange-50 border rounded-lg">
+            <span className="text-xs text-gray-500 mb-1">Possession</span>
+            <span className="text-lg font-bold text-gray-800">{property.possession || "Ready"}</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-4 bg-orange-50 border rounded-lg">
+            <span className="text-xs text-gray-500 mb-1">Location</span>
+            <span className="text-lg font-bold text-gray-800">{property.location || "Gift City Gujarat"}</span>
           </div>
         </div>
       </div>
 
+      {/* Property Overview and other sections */}
       <div className="container mx-auto px-4 py-12">
         <PropertyOverview property={property} />
 

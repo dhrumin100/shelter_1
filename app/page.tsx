@@ -125,10 +125,10 @@ export default function Home() {
       />
 
       {/* Tab Navigation - Orange, White, Gray Only */}
-      <div className="bg-gradient-gray-light border-b border-gray-200 shadow-gray-soft">
+      <div className="bg-orange-solid border-b border-orange-200 shadow-orange-soft">
         <div className="container mx-auto px-4">
           <div className="flex justify-center py-3 md:py-4">
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 bg-gradient-white-soft rounded-2xl p-2 shadow-gray-soft border border-gray-200 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 bg-orange-solid rounded-2xl p-2 shadow-orange-soft border border-orange-200 w-full sm:w-auto">
               <button
                 onClick={() => handleTabChange("residential")}
                 className={`flex items-center justify-center px-4 md:px-8 py-3 text-sm font-semibold rounded-xl transition-all duration-300 w-full sm:w-auto ${activeTab === "residential"
@@ -157,7 +157,7 @@ export default function Home() {
       </div>
 
       {/* Properties Content - Light Gray Background */}
-      <div className="bg-gradient-gray-light min-h-screen">
+      <div className="bg-gradient-orange-light min-h-screen">
         <div className="container mx-auto px-4 py-8 md:py-16" id="properties">
           {loading ? (
             <LoadingSection />

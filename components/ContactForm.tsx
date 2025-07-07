@@ -79,7 +79,7 @@ export default function ContactForm({ propertyName, property = {} }: ContactForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
+    <form onSubmit={handleSubmit} className="bg-orange-solid p-6 rounded-lg shadow-md border border-orange-200">
       <div className="mb-4">
         <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
           Full Name

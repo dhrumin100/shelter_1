@@ -185,7 +185,7 @@ Thank you!`
         {/* Modal Container with Enhanced Design */}
         <div className="flex h-full items-center justify-center p-2">
           <div
-            className={`relative bg-white rounded-3xl shadow-2xl w-full h-full max-w-[95vw] max-h-[95vh] overflow-hidden transform transition-all duration-500 border border-gray-100 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            className={`relative bg-orange-50 rounded-3xl shadow-2xl w-full h-full max-w-[95vw] max-h-[95vh] overflow-hidden transform transition-all duration-500 border border-gray-100 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
               }`}
           >
             {/* Enhanced Header with Better Transparency */}
@@ -194,7 +194,7 @@ Thank you!`
                 <div className="flex items-center space-x-6">
                   <button
                     onClick={handleClose}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 border border-white/20"
+                    className="bg-orange-50/20 hover:bg-orange-50/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 border border-orange-50/20"
                     aria-label="Close"
                   >
                     <X className="h-6 w-6 text-white" />
@@ -219,7 +219,7 @@ Thank you!`
                   </button>
                   <button
                     onClick={handleShare}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 border border-white/20"
+                    className="bg-orange-50/20 hover:bg-orange-50/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 border border-orange-50/20"
                   >
                     <Share2 className="h-6 w-6 text-white" />
                   </button>
@@ -320,7 +320,7 @@ Thank you!`
                     </div>
                   </div>
                 ) : (
-                  /* Enhanced Hero Image for Other Tabs */
+                  /* Clean Hero Image for Other Tabs */
                   <div className="relative h-[55vh] w-full overflow-hidden">
                     <Image
                       src={property.heroImage || property.image || "/placeholder.svg?height=500&width=1200"}
@@ -330,57 +330,6 @@ Thank you!`
                       sizes="100vw"
                       priority
                     />
-                    {/* Enhanced Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/30" />
-
-                    {/* Enhanced Content Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                      <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
-                          <div>
-                            <div className="flex items-center space-x-3 mb-4">
-                              <span
-                                className={`px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20 ${isCommercial ? "bg-orange-600/90" : "bg-orange-500/90"
-                                  }`}
-                              >
-                                {isCommercial ? "🏢 Commercial" : "🏠 Residential"}
-                              </span>
-                              <span className="px-4 py-2 rounded-full text-sm font-bold bg-white/20 backdrop-blur-sm border border-white/20">
-                                {property.type}
-                              </span>
-                            </div>
-                            <h2 className="text-4xl lg:text-5xl font-bold mb-3 drop-shadow-lg">{property.name}</h2>
-                            <p className="text-xl lg:text-2xl mb-6 text-white/95 drop-shadow-md">
-                              {propertyTypeText} in {property.location}
-                            </p>
-                            <div className="flex flex-wrap items-center gap-4 text-lg">
-                              <span className="flex items-center bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
-                                <Square className="h-5 w-5 mr-2" />
-                                {formatSizeDisplay()}
-                              </span>
-                              <span className="flex items-center bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
-                                <Calendar className="h-5 w-5 mr-2" />
-                                {property.possession || "TBA"}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg">
-                              <p className="text-4xl lg:text-5xl font-bold mb-2 drop-shadow-lg">
-                                {property.price === "Price On Request"
-                                  ? "Price On Request"
-                                  : `${formatPrice(property.price)} ${property.priceUnit}`}
-                              </p>
-                              <p className="text-lg text-white/90 drop-shadow-md">{property.priceDescription}</p>
-                              {isCommercial && property.pricePerSqft && (
-                                <p className="text-lg text-white/90 drop-shadow-md">{property.pricePerSqft} per sqft</p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
@@ -496,7 +445,7 @@ Thank you!`
                           return (
                             <div
                               key={index}
-                              className="flex items-center p-4 bg-white rounded-xl border border-orange-100 shadow-sm hover:shadow-orange-soft transition-all duration-200"
+                              className="flex items-center p-4 bg-orange-solid rounded-xl border border-orange-100 shadow-sm hover:shadow-orange-soft transition-all duration-200"
                             >
                               <Icon className="h-6 w-6 text-orange-600 mr-4" />
                               <span className="text-gray-700 font-semibold">{feature.text}</span>
@@ -510,7 +459,7 @@ Thank you!`
                     {property.rera && (
                       <div className="bg-gradient-gray-light rounded-2xl p-8 border border-gray-200 shadow-gray-soft">
                         <h3 className="text-2xl font-bold mb-6 text-gray-800">RERA Information</h3>
-                        <div className="bg-white rounded-xl p-6 border border-gray-200">
+                        <div className="bg-orange-solid rounded-xl p-6 border border-orange-100 shadow-sm">
                           <p className="text-gray-600 break-words text-lg">
                             <span className="font-bold text-gray-800">RERA Number:</span> {property.rera}
                           </p>
@@ -611,7 +560,7 @@ Thank you!`
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Base Price Section */}
                         <div className="space-y-6">
-                          <div className="bg-white rounded-xl p-6 border border-orange-100 shadow-sm">
+                          <div className="bg-orange-solid rounded-xl p-6 border border-orange-100 shadow-sm">
                             <h3 className="font-bold text-gray-800 mb-3 text-xl">Base Price</h3>
                             <p className="text-3xl font-bold text-orange-700 mb-2">
                               {property.price === "Price On Request"
@@ -622,7 +571,7 @@ Thank you!`
                           </div>
 
                           {isCommercial && property.pricePerSqft && (
-                            <div className="bg-white rounded-xl p-6 border border-orange-100 shadow-sm">
+                            <div className="bg-orange-solid rounded-xl p-6 border border-orange-100 shadow-sm">
                               <h3 className="font-bold text-gray-800 mb-3 text-xl">Price per Sq Ft</h3>
                               <p className="text-2xl font-bold text-orange-700">{property.pricePerSqft}</p>
                             </div>
@@ -630,7 +579,7 @@ Thank you!`
 
                           {/* Commercial Detailed Pricing */}
                           {isCommercial && (property.officePrice || property.showroomPrice) && (
-                            <div className="bg-white rounded-xl p-6 border border-orange-100 shadow-sm">
+                            <div className="bg-orange-solid rounded-xl p-6 border border-orange-100 shadow-sm">
                               <h3 className="font-bold text-gray-800 mb-4 text-xl">Detailed Pricing</h3>
                               <div className="space-y-3">
                                 {property.officeSize && property.officePrice && (
@@ -659,7 +608,7 @@ Thank you!`
 
                         {/* Payment Plans Section - Only This Section Kept */}
                         <div className="space-y-6">
-                          <div className="bg-white rounded-xl p-6 border border-orange-100 shadow-sm">
+                          <div className="bg-orange-solid rounded-xl p-6 border border-orange-100 shadow-sm">
                             <h3 className="font-bold text-gray-800 mb-4 text-xl">Payment Plans Available</h3>
                             <ul className="text-gray-700 space-y-3">
                               <li className="flex items-start">
@@ -702,7 +651,7 @@ Thank you!`
                         <h2 className="text-3xl font-bold text-gray-800">Get in Touch</h2>
 
                         <div className="space-y-6">
-                          <div className="flex items-start p-6 bg-white rounded-2xl border border-gray-200 shadow-gray-soft">
+                          <div className="flex items-start p-6 bg-orange-solid rounded-2xl border border-orange-200 shadow-orange-soft">
                             <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-4 mr-6">
                               <Phone className="h-6 w-6 text-orange-700" />
                             </div>
@@ -713,7 +662,7 @@ Thank you!`
                             </div>
                           </div>
 
-                          <div className="flex items-start p-6 bg-white rounded-2xl border border-gray-200 shadow-gray-soft">
+                          <div className="flex items-start p-6 bg-orange-solid rounded-2xl border border-orange-200 shadow-orange-soft">
                             <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-4 mr-6">
                               <Mail className="h-6 w-6 text-orange-700" />
                             </div>
@@ -724,7 +673,7 @@ Thank you!`
                             </div>
                           </div>
 
-                          <div className="flex items-start p-6 bg-white rounded-2xl border border-gray-200 shadow-gray-soft">
+                          <div className="flex items-start p-6 bg-orange-solid rounded-2xl border border-orange-200 shadow-orange-soft">
                             <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-full p-4 mr-6">
                               <Clock className="h-6 w-6 text-orange-700" />
                             </div>

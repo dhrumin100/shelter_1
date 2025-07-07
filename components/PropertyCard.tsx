@@ -58,17 +58,23 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
       : `${property.bhk} BHK`
   }
 
+  // Utility to append 'Sqft' only if not present
+  const appendSqft = (value: string) => {
+    if (!value) return '';
+    return /sq\.? ?ft/i.test(value) ? value : `${value} Sqft`;
+  };
+
   const formatSizeDisplay = () => {
     if (isCommercial) {
-      return `${property.size} sqft`
+      return appendSqft(property.size);
     }
     if (property.type === "Villa") {
-      return `${property.size} sq. yard ${property.superBuiltUpArea}`
+      return `${property.size} sq. yard ${property.superBuiltUpArea}`;
     } else {
       if (property.superBuiltUpArea && property.superBuiltUpArea !== "") {
-        return `${property.size} sqft. (${property.superBuiltUpArea} Carpet Area)`
+        return `${appendSqft(property.size)} (${property.superBuiltUpArea} Carpet Area)`;
       } else {
-        return `${property.size} sqft.`
+        return appendSqft(property.size);
       }
     }
   }
@@ -82,11 +88,11 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
   return (
     <>
-      <article className="group bg-gradient-white-soft rounded-xl md:rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-medium focus-within:shadow-orange-medium transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 focus-within:scale-105 border border-gray-100 outline-none focus-within:ring-2 focus-within:ring-orange-400">
+      <article className="group bg-orange-50 rounded-xl md:rounded-2xl overflow-hidden shadow-gray-soft hover:shadow-orange-medium focus-within:shadow-orange-medium transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 focus-within:scale-105 border border-gray-100 outline-none focus-within:ring-2 focus-within:ring-orange-400">
         {/* Property Image with Consistent Theme */}
         <div className="relative h-48 sm:h-56 w-full bg-gradient-gray-light overflow-hidden">
           {imageLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+            <div className="absolute inset-0 flex items-center justify-center bg-orange-50">
               <LoadingSpinner size="lg" />
             </div>
           )}
@@ -113,7 +119,7 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
 
           {/* Property Type Badge */}
           <div className="absolute top-3 md:top-4 right-3 md:right-4">
-            <span className="px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-semibold bg-gradient-white-soft text-gray-800 shadow-lg border border-gray-200">
+            <span className="px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-semibold bg-orange-solid text-gray-800 shadow-lg border border-orange-200">
               {property.type}
             </span>
           </div>
@@ -123,7 +129,7 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 px-4">
               <button
                 onClick={handleKnowMoreClick}
-                className="bg-gradient-white-soft hover:bg-gray-50 text-gray-800 px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-gray-soft border border-gray-200"
+                className="bg-gradient-orange-light hover:bg-gradient-orange-warm text-orange-800 px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-orange-soft border border-orange-200"
               >
                 View Details
               </button>
@@ -146,11 +152,12 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
                 {property.name}
               </h3>
             </div>
-
-            <p className="text-sm text-gray-600 font-medium">
-              {getPropertyTypeText()}
-            </p>
-
+            {/* Show BHK range only once for residential */}
+            {!isCommercial && (
+              <p className="text-sm text-gray-600 font-medium">
+                {property.priceDescription}
+              </p>
+            )}
             {/* Developer Information for Commercial Properties */}
             {isCommercial && property.developer && (
               <div className="flex items-center mt-2">
@@ -160,132 +167,84 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             )}
           </div>
 
-          {/* Company Logo with Consistent Frame */}
-          <div className="flex justify-center mb-4 md:mb-5">
-            <div className="relative h-6 md:h-8 w-16 md:w-20 bg-gradient-gray-light rounded-lg p-1 md:p-1.5 border border-gray-200 shadow-sm">
-              <Image
-                src={property.companyLogo || "/placeholder.svg?height=32&width=80"}
-                alt="Developer Logo"
-                fill
-                className="object-contain"
-                sizes="80px"
-              />
-            </div>
-          </div>
-
-          {/* Enhanced Pricing Section for Commercial Properties */}
+          {/* Pricing Section */}
           {isCommercial ? (
-            <div className="mb-4 md:mb-6 space-y-3">
-              {/* Main Price Display */}
-              <div className="text-center p-3 md:p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
-                <p className="text-xs font-semibold text-orange-700 mb-1">Price Range</p>
-                <p className="text-lg md:text-xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
-                  {getPriceDisplay()}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">{property.priceDescription}</p>
-              </div>
-
-              {/* Detailed Pricing Breakdown */}
-              <div className="grid grid-cols-1 gap-2">
-                {property.officeSize && property.officePrice && (
-                  <div className="flex items-center justify-between p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="flex items-center">
-                      <div className="w-5 h-5 md:w-6 md:h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
-                        <Briefcase className="h-3 w-3 text-orange-700" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500">Office Space</p>
-                        <p className="text-sm font-semibold text-gray-800">{property.officeSize}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-bold text-orange-700">{property.officePrice}</p>
+            <div className="mb-1 md:mb-2">
+              {/* Office Space Card */}
+              {property.officeSize && (
+                <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">
+                  <div className="flex items-center gap-1.5">
+                    <Briefcase className="h-4 w-4 text-orange-700" />
+                    <div>
+                      <div className="text-[10px] text-gray-500 font-medium">Office Space</div>
+                      <div className="text-xs md:text-sm font-bold text-gray-800">{appendSqft(property.officeSize)}</div>
                     </div>
                   </div>
-                )}
-
-                {property.showroomSize && property.showroomPrice && (
-                  <div className="flex items-center justify-between p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="flex items-center">
-                      <div className="w-5 h-5 md:w-6 md:h-6 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2">
-                        <Building2 className="h-3 w-3 text-orange-700" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500">Showroom Space</p>
-                        <p className="text-sm font-semibold text-gray-800">{property.showroomSize}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-bold text-orange-700">{property.showroomPrice}</p>
+                  {property.officePrice && (
+                    <div className="text-xs md:text-sm font-bold text-orange-700">{property.officePrice}</div>
+                  )}
+                </div>
+              )}
+              {/* Showroom Space Card */}
+              {property.showroomSize && (
+                <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">
+                  <div className="flex items-center gap-1.5">
+                    <Building2 className="h-4 w-4 text-orange-700" />
+                    <div>
+                      <div className="text-[10px] text-gray-500 font-medium">Showroom Space</div>
+                      <div className="text-xs md:text-sm font-bold text-gray-800">{appendSqft(property.showroomSize)}</div>
                     </div>
                   </div>
-                )}
+                  {property.showroomPrice && (
+                    <div className="text-xs md:text-sm font-bold text-orange-700">{property.showroomPrice}</div>
+                  )}
+                </div>
+              )}
+              {/* Possession Card */}
+              <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 text-orange-700" />
+                  <div>
+                    <div className="text-[10px] text-gray-500 font-medium">Possession</div>
+                    <div className="text-xs md:text-sm font-bold text-gray-800">{property.possession || "TBA"}</div>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
-            /* Regular Pricing Section for Residential */
-            <div className="text-center mb-4 md:mb-6 p-3 md:p-4 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-gray-soft">
-              <p className="text-xs font-semibold text-orange-700 mb-1">{`${getPropertyTypeText()} Starts From`}</p>
-              <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-700 to-orange-800 bg-clip-text text-transparent">
-                {getPriceDisplay()} {property.priceUnit}
-              </p>
-              <p className="text-xs text-gray-500 mt-1">{property.priceDescription}</p>
+            /* Residential: Price, Possession, and Size in card style, matching commercial */
+            <div className="mb-1 md:mb-2">
+              <div className="p-2 md:p-2.5 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-orange-soft text-center mb-1">
+                <p className="text-[11px] font-semibold text-orange-700 mb-0.5">Price</p>
+                <p className="text-base md:text-lg font-bold text-orange-800 mb-0.5">{getPriceDisplay()} {property.priceUnit}</p>
+                <p className="text-[10px] text-orange-700">Possession & Price Details</p>
+              </div>
+              {/* Possession Card */}
+              <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 text-orange-700" />
+                  <div>
+                    <div className="text-[10px] text-gray-500 font-medium">Possession</div>
+                    <div className="text-xs md:text-sm font-bold text-gray-800">{property.possession || "TBA"}</div>
+                  </div>
+                </div>
+              </div>
+              {/* Size Card (if present) */}
+              {property.size && (
+                <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">
+                  <div className="flex items-center gap-1.5">
+                    <Square className="h-4 w-4 text-orange-700" />
+                    <div>
+                      <div className="text-[10px] text-gray-500 font-medium">Size</div>
+                      <div className="text-xs md:text-sm font-bold text-gray-800">{formatSizeDisplay()}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
-          {/* Property Details Grid - Enhanced for Commercial */}
-          <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
-            <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-              <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
-                <Square className="h-3 w-3 md:h-4 md:w-4 text-orange-700" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Size</p>
-                <p className="text-xs md:text-sm font-semibold text-gray-800">{formatSizeDisplay()}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-              <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
-                <Calendar className="h-3 w-3 md:h-4 md:w-4 text-orange-700" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Possession</p>
-                <p className="text-xs md:text-sm font-semibold text-gray-800">{property.possession || "TBA"}</p>
-              </div>
-            </div>
-
-            {/* Commercial-specific details - Orange Theme Only */}
-            {isCommercial && (
-              <>
-                {property.parkingSpaces !== undefined && (
-                  <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
-                      <Car className="h-3 w-3 md:h-4 md:w-4 text-orange-800" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500">Parking</p>
-                      <p className="text-xs md:text-sm font-semibold text-gray-800">{property.parkingSpaces} Spaces</p>
-                    </div>
-                  </div>
-                )}
-
-                {property.floorDetails && (
-                  <div className="flex items-center p-2 md:p-3 bg-gradient-gray-light rounded-lg border border-gray-200">
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-orange-200 to-orange-300 rounded-full flex items-center justify-center mr-2 md:mr-3 shadow-sm">
-                      <Building2 className="h-3 w-3 md:h-4 md:w-4 text-orange-800" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500">Floor</p>
-                      <p className="text-xs md:text-sm font-semibold text-gray-800">{property.floorDetails}</p>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* Commercial Suitable For Tags - Orange Theme */}
+          {/* Commercial Suitable For Tags */}
           {isCommercial && property.suitableFor && (
             <div className="mb-4 md:mb-5">
               <p className="text-xs text-gray-500 mb-2">Suitable For:</p>
@@ -307,7 +266,7 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             </div>
           )}
 
-          {/* Action Buttons - Consistent Orange Theme */}
+          {/* Action Buttons */}
           <div className="space-y-2 md:space-y-3">
             <button
               onClick={handleKnowMoreClick}
@@ -315,7 +274,6 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
             >
               Know More
             </button>
-
             <button
               onClick={handleEnquireClick}
               className="w-full border-2 border-orange-300 bg-gradient-orange-light text-orange-700 hover:bg-gradient-orange-warm hover:text-white hover:border-orange-600 font-semibold py-2.5 md:py-3 rounded-xl transition-all duration-300 text-sm transform hover:scale-[1.02]"

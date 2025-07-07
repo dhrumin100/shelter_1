@@ -48,7 +48,7 @@ export default function PropertyAmenities({ amenities }: PropertyAmenitiesProps)
       {amenities.map((amenity, index) => (
         <div
           key={index}
-          className="flex items-center p-4 bg-gradient-white-soft border border-gray-200 rounded-xl hover:shadow-orange-soft transition-all duration-300 hover:border-orange-200 group"
+          className="flex items-center p-4 bg-orange-50 border border-gray-200 rounded-xl hover:shadow-orange-soft transition-all duration-300 hover:border-orange-200 group"
         >
           <div className="mr-4 p-2 bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg group-hover:from-orange-100 group-hover:to-orange-200 transition-all duration-300">
             {amenityIcons[amenity] || <div className="h-6 w-6 bg-orange-500 rounded-full" />}
