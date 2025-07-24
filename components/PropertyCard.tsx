@@ -69,13 +69,9 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
       return appendSqft(property.size);
     }
     if (property.type === "Villa") {
-      return `${property.size} sq. yard ${property.superBuiltUpArea}`;
+      return `${property.size} sq. yard${property.superBuiltUpArea ? ` (${property.superBuiltUpArea})` : ''}`;
     } else {
-      if (property.superBuiltUpArea && property.superBuiltUpArea !== "") {
-        return `${appendSqft(property.size)} (${property.superBuiltUpArea} Carpet Area)`;
-      } else {
-        return appendSqft(property.size);
-      }
+      return appendSqft(property.size);
     }
   }
 
@@ -217,7 +213,6 @@ const PropertyCard = memo(function PropertyCard({ property }: PropertyCardProps)
               <div className="p-2 md:p-2.5 bg-gradient-orange-light rounded-xl border border-orange-200 shadow-orange-soft text-center mb-1">
                 <p className="text-[11px] font-semibold text-orange-700 mb-0.5">Price</p>
                 <p className="text-base md:text-lg font-bold text-orange-800 mb-0.5">{getPriceDisplay()} {property.priceUnit}</p>
-                <p className="text-[10px] text-orange-700">Possession & Price Details</p>
               </div>
               {/* Possession Card */}
               <div className="flex items-center justify-between p-2 mb-1 bg-orange-solid rounded-xl border border-orange-200 shadow-orange-soft">

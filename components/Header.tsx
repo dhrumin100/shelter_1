@@ -34,8 +34,13 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
       <div className="md:hidden bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2">
-            <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
-            <span className="text-xs font-bold text-gray-600">Residential & Commercial Projects</span>
+            <Image src="/images/logo.png" alt="Logo" width={56} height={56} />
+            <div className="flex flex-col items-start justify-center leading-tight">
+              <span className="text-black font-bold text-base md:text-lg">Gujarat International Finance Tec-City</span>
+              <span className="text-xs md:text-sm font-medium text-black mt-0.5 md:mt-1 ml-1 md:ml-4">
+                Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Sheler4U</span>
+              </span>
+            </div>
           </div>
 
           <button
@@ -71,10 +76,15 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
 
             {/* Logo + Label */}
             <div className="flex items-center">
-              <Image src="/images/logo.png" alt="Logo" width={44} height={44} />
-              <span className="ml-2 text-black font-bold text-sm md:text-base bg-orange-50 px-3 py-1 rounded-full shadow-sm">
-                Residential & Commercial Projects
-              </span>
+              <Image src="/images/logo.png" alt="Logo" width={64} height={64} />
+              <div className="ml-2 flex flex-col items-start justify-center leading-tight">
+                <span className="text-black font-bold text-base md:text-lg bg-orange-50 px-3 py-1 rounded-full shadow-sm">
+                  Gujarat International Finance Tec-City
+                </span>
+                <span className="text-xs md:text-sm font-medium text-black mt-0.5 md:mt-1 ml-1 md:ml-4">
+                  Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Sheler4U</span>
+                </span>
+              </div>
             </div>
 
             {/* Nav */}

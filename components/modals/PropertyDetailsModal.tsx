@@ -34,6 +34,7 @@ import {
 import type { Property } from "@/lib/types"
 import PropertyAmenities from "../PropertyAmenities"
 import UniversalForm from "../forms/UniversalForm"
+import ContactForm from "../ContactForm"
 
 interface PropertyDetailsModalProps {
   isOpen: boolean
@@ -149,9 +150,9 @@ Thank you!`
       return `${property.size} sq. yard ${property.superBuiltUpArea}`
     } else {
       if (property.superBuiltUpArea && property.superBuiltUpArea !== "") {
-        return `${property.size} sqft. (${property.superBuiltUpArea} Carpet Area)`
+        return `${property.size} sqft (${property.superBuiltUpArea} Carpet Area)`
       } else {
-        return `${property.size} sqft.`
+        return `${property.size} .`
       }
     }
   }
@@ -689,13 +690,7 @@ Thank you!`
                       {/* Contact Form */}
                       <div className="bg-gradient-orange-light rounded-2xl p-8 border border-orange-200 shadow-orange-soft">
                         <h3 className="text-2xl font-bold mb-6 text-orange-800">Send us a Message</h3>
-                        <UniversalForm
-                          type="enquiry"
-                          propertyName={property.name}
-                          title=""
-                          description=""
-                          className="space-y-5"
-                        />
+                        <ContactForm propertyName={property.name} />
                       </div>
                     </div>
                   </div>
