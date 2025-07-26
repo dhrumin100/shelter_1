@@ -38,7 +38,7 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
             <div className="flex flex-col items-start justify-center leading-tight">
               <span className="text-black font-bold text-base md:text-lg">Gujarat International Finance Tec-City</span>
               <span className="text-xs md:text-sm font-medium text-black mt-0.5 md:mt-1 ml-1 md:ml-4">
-                Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Sheler4U</span>
+                Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Shelter4U</span>
               </span>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function Header({ activeTab = "residential", onTabChange }: Heade
                   Gujarat International Finance Tec-City
                 </span>
                 <span className="text-xs md:text-sm font-medium text-black mt-0.5 md:mt-1 ml-1 md:ml-4">
-                  Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Sheler4U</span>
+                  Projects marketed by <span className="text-red-600 font-bold text-sm md:text-base align-middle">Shelter4U</span>
                 </span>
               </div>
             </div>
