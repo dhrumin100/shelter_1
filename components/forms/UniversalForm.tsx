@@ -57,11 +57,22 @@ export default function UniversalForm({
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Failed to submit');
+
       // Only after successful API call, open WhatsApp
       const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
       const message = `${type === "enquiry" ? "Enquiry" : "Contact"}:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nProperty: ${payload.propertyName}\nCategory: ${payload.propertyCategory}\nMessage: ${payload.message}`;
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
-      onSuccess?.();
+
+      // Redirect to thank you page with form data
+      const params = new URLSearchParams({
+        type: type,
+        name: payload.fullName,
+        email: payload.email,
+        phone: payload.phone,
+        property: payload.propertyName,
+        message: payload.message || ''
+      });
+      window.location.href = `/thank-you?${params.toString()}`;
     } catch (err) {
       alert('Submission failed. Please try again.');
       console.error(err);
@@ -101,18 +112,7 @@ export default function UniversalForm({
     onSubmit()
   }
 
-  if (isSubmitted) {
-    return (
-      <div className={`text-center ${className}`}>
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4 md:p-6 max-w-md mx-auto">
-          <h3 className="text-lg md:text-xl font-bold text-green-800 mb-2">Thank you for your submission!</h3>
-          <button onClick={reset} className="text-green-600 hover:text-green-800 font-medium text-sm underline mt-4">
-            Submit Another
-          </button>
-        </div>
-      </div>
-    )
-  }
+
 
   return (
     <form

@@ -48,13 +48,16 @@ export default function ContactSection() {
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
 
-        // Reset form only after successful submission
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          message: "",
+        // Redirect to thank you page with form data
+        const params = new URLSearchParams({
+          type: 'contact',
+          name: payload.fullName,
+          email: payload.email,
+          phone: payload.phone,
+          property: '',
+          message: payload.message || ''
         });
+        window.location.href = `/thank-you?${params.toString()}`;
       } else {
         throw new Error(result.error || 'Submission failed');
       }

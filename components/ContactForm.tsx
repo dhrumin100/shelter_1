@@ -57,7 +57,17 @@ export default function ContactForm({ propertyName, property = {} }: ContactForm
         const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
         const message = `Contact:\nName: ${payload.fullName}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nProperty: ${payload.propertyName}\nCategory: ${payload.propertyCategory}\nMessage: ${payload.message}`;
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
-        setSubmitted(true);
+
+        // Redirect to thank you page with form data
+        const params = new URLSearchParams({
+          type: 'contact',
+          name: payload.fullName,
+          email: payload.email,
+          phone: payload.phone,
+          property: payload.propertyName,
+          message: payload.message || ''
+        });
+        window.location.href = `/thank-you?${params.toString()}`;
       } else {
         throw new Error(result.error || 'Submission failed');
       }
@@ -67,16 +77,7 @@ export default function ContactForm({ propertyName, property = {} }: ContactForm
     }
   }
 
-  if (submitted) {
-    return (
-      <div className="bg-green-50 border border-green-200 rounded-xl p-6 max-w-md mx-auto text-center">
-        <h3 className="text-xl font-bold text-green-800 mb-2">Thank you for your submission!</h3>
-        <button onClick={() => setSubmitted(false)} className="text-green-600 hover:text-green-800 font-medium text-sm underline mt-4">
-          Submit Another
-        </button>
-      </div>
-    )
-  }
+
 
   return (
     <form onSubmit={handleSubmit} className="bg-orange-solid p-6 rounded-lg shadow-md border border-orange-200">

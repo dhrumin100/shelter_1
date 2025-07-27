@@ -59,6 +59,17 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
         const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9714512452";
         const message = `Enquiry:\nName: ${enquiryData.fullName}\nEmail: ${enquiryData.email}\nPhone: ${enquiryData.phone}\nProperty: ${enquiryData.propertyName}\nCategory: ${enquiryData.propertyCategory}\nMessage: ${enquiryData.message}`;
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+
+        // Redirect to thank you page with form data
+        const params = new URLSearchParams({
+          type: 'enquiry',
+          name: enquiryData.fullName,
+          email: enquiryData.email,
+          phone: enquiryData.phone,
+          property: enquiryData.propertyName,
+          message: enquiryData.message || ''
+        });
+        window.location.href = `/thank-you?${params.toString()}`;
       } else {
         throw new Error(result.error || 'Submission failed');
       }
@@ -188,117 +199,99 @@ export default function EnquiryModal({ isOpen, onClose, property }: EnquiryModal
 
             {/* Right Side - Enquiry Form */}
             <div className="p-6 lg:p-8">
-              {isSubmitted ? (
-                <div className="text-center py-8">
-                  <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
-                  <p className="text-green-700 mb-6">
-                    Your enquiry has been submitted successfully. Our team will contact you soon.
-                  </p>
-                  <button
-                    onClick={handleClose}
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
-                  >
-                    Close
-                  </button>
+              {/* Form Header */}
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Enquire about {property.name}</h2>
+                <p className="text-gray-600">Fill the form below and our team will contact you soon.</p>
+              </div>
+
+              {/* Error Message */}
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                  <p className="text-red-700 text-sm">{submitError}</p>
                 </div>
-              ) : (
-                <>
-                  {/* Form Header */}
-                  <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Enquire about {property.name}</h2>
-                    <p className="text-gray-600">Fill the form below and our team will contact you soon.</p>
-                  </div>
-
-                  {/* Error Message */}
-                  {submitError && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-                      <p className="text-red-700 text-sm">{submitError}</p>
-                    </div>
-                  )}
-
-                  {/* Form */}
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
-                    {/* Full Name */}
-                    <div>
-                      <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
-                        <User className="w-4 h-4 inline mr-1" />
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        id="fullName"
-                        value={data.fullName}
-                        onChange={(e) => updateField("fullName", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                          }`}
-                        placeholder="Full Name"
-                      />
-                      {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                        <Mail className="w-4 h-4 inline mr-1" />
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        value={data.email}
-                        onChange={(e) => updateField("email", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.email ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                          }`}
-                        placeholder="Email"
-                      />
-                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                        <Phone className="w-4 h-4 inline mr-1" />
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        value={data.phone}
-                        onChange={(e) => updateField("phone", e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.phone ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
-                          }`}
-                        placeholder="Phone"
-                      />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <LoadingSpinner size="sm" className="mr-2" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5 mr-2" />
-                          Submit Enquiry
-                        </>
-                      )}
-                    </button>
-
-                    {/* Trust Indicator */}
-                    <p className="text-xs text-gray-500 text-center mt-4">
-                      🔒 Your information is secure and will not be shared with third parties
-                    </p>
-                  </form>
-                </>
               )}
+
+              {/* Form */}
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                {/* Full Name */}
+                <div>
+                  <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <User className="w-4 h-4 inline mr-1" />
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    value={data.fullName}
+                    onChange={(e) => updateField("fullName", e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    placeholder="Full Name"
+                  />
+                  {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <Mail className="w-4 h-4 inline mr-1" />
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={data.email}
+                    onChange={(e) => updateField("email", e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.email ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    placeholder="Email"
+                  />
+                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <Phone className="w-4 h-4 inline mr-1" />
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={data.phone}
+                    onChange={(e) => updateField("phone", e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${errors.phone ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    placeholder="Phone"
+                  />
+                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-orange-300 disabled:to-orange-400 text-white font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <LoadingSpinner size="sm" className="mr-2" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Submit Enquiry
+                    </>
+                  )}
+                </button>
+
+                {/* Trust Indicator */}
+                <p className="text-xs text-gray-500 text-center mt-4">
+                  🔒 Your information is secure and will not be shared with third parties
+                </p>
+              </form>
             </div>
           </div>
         </div>

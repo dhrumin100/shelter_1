@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Footer from "@/components/Footer"
 import WhatsappButton from "@/components/WhatsappButton"
-import Header from "@/components/Header"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -26,7 +25,6 @@ export default function RootLayout({
         <link rel="icon" href="/images/logo.png" type="image/png" />
       </head>
       <body className={inter.className}>
-        <Header />
         <main>{children}</main>
         <Footer />
         <WhatsappButton />
