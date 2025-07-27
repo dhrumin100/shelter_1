@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -18,7 +18,7 @@ import {
     Clock
 } from "lucide-react"
 
-export default function ThankYouPage() {
+function ThankYouContent() {
     const searchParams = useSearchParams()
     const router = useRouter()
     const [formData, setFormData] = useState<any>(null)
@@ -269,5 +269,20 @@ export default function ThankYouPage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+export default function ThankYouPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading...</p>
+                </div>
+            </div>
+        }>
+            <ThankYouContent />
+        </Suspense>
     )
 } 
